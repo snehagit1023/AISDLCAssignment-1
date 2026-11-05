@@ -1,0 +1,2 @@
+04 Nov – Tool check: node v24.21.0, git 2.56.0, uv 0.12.24, specify 1.1.3. First "specify --version" was blocked by Windows Application Control policy; worked on retry. Cause: Windows security, not my spec or the AI.
+04 Nov – Ran specify init (copilot, ps). Commands in this version use a hyphen: /speckit-constitution.
