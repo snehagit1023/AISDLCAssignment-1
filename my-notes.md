@@ -1,2 +1,4 @@
 04 Nov – Tool check: node v24.21.0, git 2.56.0, uv 0.12.24, specify 1.1.3. First "specify --version" was blocked by Windows Application Control policy; worked on retry. Cause: Windows security, not my spec or the AI.
 04 Nov – Ran specify init (copilot, ps). Commands in this version use a hyphen: /speckit-constitution.
+05 Nov – Constitution run 1 stopped: Copilot tried to run Spec Kit scripts in the parent folder because Git was switched on there. Cause: setup (repo location), not my spec. Fix: moved Git into Part1A and re-ran.
+05 Nov – Constitution v1.0.0 created. Reviewed the red/green changes: placeholders replaced with my 9 rules. Approved.
