@@ -8,6 +8,13 @@
 
 **Input**: User description: "Build a command-line tool that tells a Scrum Master, before sprint planning, whether planned story points fit a sprint's real capacity."
 
+## Clarifications
+
+### Session 2026-11-08
+
+- Q: How should capacity and average velocity be rounded when the first discarded decimal digit is exactly 5? → A: Round half up to one decimal place.
+- Q: What exact labels and wording should the readable report use for each figure and its final verdict line? → A: Use the agreed six-line report format with fixed labels, order, and verdict wording.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Assess a Sprint Plan (Priority: P1)
@@ -73,13 +80,13 @@ As a Scrum Master preparing sprint data, I want invalid files and values to prod
 
 - **FR-001**: The tool MUST accept the invocation `report <file>` and the same invocation with an optional `--json` flag. Without the flag it MUST produce the readable report.
 - **FR-002**: The input MUST describe one sprint with `sprintLengthDays`, a `team` array, a `pastVelocities` array, and `plannedPoints`. `pastVelocities` MUST be ordered oldest first. A missing `leaveDays` MUST default to 0 and a missing `allocation` MUST default to 1.0.
-- **FR-003**: The tool MUST calculate full capacity as the sum of `sprintLengthDays × allocation` for every team member and report it to one decimal place in person-days.
-- **FR-004**: The tool MUST calculate available capacity as the sum of `(sprintLengthDays - leaveDays) × allocation` for every team member and report it to one decimal place in person-days.
-- **FR-005**: When history is present, the tool MUST calculate the mean of the most recent three past velocity values, or all values when fewer than three exist, and report it to one decimal place.
+- **FR-003**: The tool MUST calculate full capacity as the sum of `sprintLengthDays × allocation` for every team member and report it to one decimal place in person-days, rounding ties up (for example, 1.25 to 1.3).
+- **FR-004**: The tool MUST calculate available capacity as the sum of `(sprintLengthDays - leaveDays) × allocation` for every team member and report it to one decimal place in person-days, rounding ties up.
+- **FR-005**: When history is present, the tool MUST calculate the mean of the most recent three past velocity values, or all values when fewer than three exist, and report it to one decimal place, rounding ties up.
 - **FR-006**: When history is present, the tool MUST calculate forecast points as average velocity multiplied by available capacity divided by full capacity, rounded down to a whole number.
 - **FR-007**: With history present, the tool MUST report `OVER_COMMITTED` when planned points exceed forecast points, with difference equal to planned points minus forecast points; `FITS` when planned points are between 80% of forecast and forecast inclusive, with difference zero; and `UNDER_COMMITTED` when planned points are below 80% of forecast, with difference equal to forecast minus planned points.
-- **FR-008**: When `pastVelocities` is empty, the tool MUST report `NO_HISTORY`, still calculate and report capacity, and set average velocity, forecast points, and difference points to null in JSON output. In the readable report, it MUST display those three unavailable figures as `N/A`. The command MUST exit with code 0.
-- **FR-009**: The default report MUST be readable, contain one line per reported figure, display capacity and velocity to one decimal place, and end with the appropriate verdict line. For the example input, its final line MUST be `Verdict: OVER_COMMITTED by 3 points`.
+- **FR-008**: When `pastVelocities` is empty, the tool MUST report `NO_HISTORY`, still calculate and report capacity, and set average velocity, forecast points, and difference points to null in JSON output. In the readable report, it MUST display average velocity and forecast as `N/A` and end with `Verdict: NO_HISTORY`. Difference is represented by the verdict line and is not shown separately in readable output. The command MUST exit with code 0.
+- **FR-009**: The default report MUST contain exactly these six lines in this order, substituting the calculated values: `Full capacity: <value> person-days`; `Available capacity: <value> person-days`; `Average velocity: <value> points`; `Forecast: <value> points`; `Planned points: <value>`; `Verdict: <verdict>`. Capacity and velocity MUST display one decimal place. The verdict line MUST be exactly `Verdict: OVER_COMMITTED by <difference> points`, `Verdict: FITS`, `Verdict: UNDER_COMMITTED by <difference> points`, or `Verdict: NO_HISTORY`, as applicable. For the example input, the final line MUST be `Verdict: OVER_COMMITTED by 3 points`.
 - **FR-010**: With `--json`, stdout MUST contain only one JSON object with exactly these keys in this order: `fullCapacityDays`, `availableCapacityDays`, `averageVelocity`, `forecastPoints`, `plannedPoints`, `verdict`, `differencePoints`. Numeric values MUST follow the specified rounding; unavailable history values MUST be JSON null.
 - **FR-011**: The tool MUST reject `sprintLengthDays` unless it is a whole number from 1 through 30 inclusive.
 - **FR-012**: The tool MUST reject an empty team, a team member without a non-empty name, or duplicate member names. Names are compared case-insensitively after trimming surrounding whitespace.
@@ -102,13 +109,13 @@ As a Scrum Master preparing sprint data, I want invalid files and values to prod
 
 - **AC-001 (FR-001)**: PASS if `report <file>` produces the readable mode and `report <file> --json` produces the JSON mode; otherwise FAIL.
 - **AC-002 (FR-002)**: PASS if a valid complete input is accepted, missing optional member values are treated as 0 and 1.0 respectively, and velocity order is interpreted oldest first; otherwise FAIL.
-- **AC-003 (FR-003)**: PASS if the example input reports full capacity as exactly 35.0 person-days; otherwise FAIL.
-- **AC-004 (FR-004)**: PASS if the example input reports available capacity as exactly 33.0 person-days; otherwise FAIL.
-- **AC-005 (FR-005)**: PASS if the example input reports 24.0, a one-value history reports that value to one decimal place, and histories longer than three values use only the latest three; otherwise FAIL.
+- **AC-003 (FR-003)**: PASS if the example input reports full capacity as exactly 35.0 person-days and a tie such as 1.25 is reported as 1.3; otherwise FAIL.
+- **AC-004 (FR-004)**: PASS if the example input reports available capacity as exactly 33.0 person-days and exact half-tenth ties round up; otherwise FAIL.
+- **AC-005 (FR-005)**: PASS if the example input reports 24.0, a one-value history reports that value to one decimal place, histories longer than three values use only the latest three, and exact half-tenth ties round up; otherwise FAIL.
 - **AC-006 (FR-006)**: PASS if the example input forecasts 22 and a fractional forecast is rounded down, never rounded to nearest; otherwise FAIL.
 - **AC-007 (FR-007)**: PASS if tests establish each of the three verdicts, including equality at the 80% threshold and at forecast, and each required difference; otherwise FAIL.
-- **AC-008 (FR-008)**: PASS if empty history reports `NO_HISTORY`, preserves capacity figures, returns JSON null for average velocity, forecast, and difference, displays those unavailable figures as `N/A` in the readable report, and exits 0; otherwise FAIL.
-- **AC-009 (FR-009)**: PASS if the default example report has one line per figure and ends exactly with `Verdict: OVER_COMMITTED by 3 points`; otherwise FAIL.
+- **AC-008 (FR-008)**: PASS if empty history reports `NO_HISTORY`, preserves capacity figures, returns JSON null for average velocity, forecast, and difference, displays average velocity and forecast as `N/A` in the readable report, ends that report with `Verdict: NO_HISTORY`, and exits 0; otherwise FAIL.
+- **AC-009 (FR-009)**: PASS if the default report has exactly the six specified lines with the exact labels and order, uses the specified verdict wording, and the example ends exactly with `Verdict: OVER_COMMITTED by 3 points`; otherwise FAIL.
 - **AC-010 (FR-010)**: PASS if JSON mode emits a parseable JSON object with exactly the seven specified keys in order and no other stdout content; otherwise FAIL.
 - **AC-011 (FR-011)**: PASS if sprint lengths 1 and 30 are accepted and values below 1, above 30, fractional, missing, or wrongly typed are rejected with exit 1, empty stdout, and a field-naming `Error:` message; otherwise FAIL.
 - **AC-012 (FR-012)**: PASS if a non-empty team with distinct non-empty names is accepted and empty teams, missing/blank names, and duplicates (including case-only duplicates after trimming) are rejected with exit 1, empty stdout, and a field-naming `Error:` message; otherwise FAIL.

@@ -3,3 +3,4 @@
 05 Nov – Constitution run 1 stopped: Copilot tried to run Spec Kit scripts in the parent folder because Git was switched on there. Cause: setup (repo location), not my spec. Fix: moved Git into Part1A and re-ran.
 05 Nov – Constitution v1.0.0 created. Reviewed the red/green changes: placeholders replaced with my 9 rules. Approved.
 06 Nov – Spec created: 18 FRs, 5 NFRs, 23 pass/fail acceptance criteria. Copilot split my 12 rules into 18 and added N/A display + fixed JSON key order (accepted). Gap noticed: rounding method not stated – to raise in clarify.
+08 Nov – Clarify: Copilot asked 2 questions. Q1 rounding tie rule → chose A, round half up. Q2 readable report wording → chose A, exact six-line format. Spec updated (+17 −10). All categories Clear/Resolved.
