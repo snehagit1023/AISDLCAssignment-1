@@ -83,3 +83,14 @@ Command: /speckit-tasks
 IMPORTANT: The project root is the current workspace folder C:\Users\Dell\Documents\AISDLCAssignment\Part1A. Work inside Part1A only. Never use the parent folder.
 
 Generate dependency-ordered tasks from the plan. Every task names the requirement IDs (FR/NFR) it delivers. Include tasks for: project setup (package.json with an npm test script, ESLint config with eslint-plugin-security, .gitignore for node_modules and .env), example input files, validation, each calculation, the CLI and output formats, and one test task per requirement including failure cases. Test tasks come before or alongside the code they verify.
+## Step 6 – analyze (10 Nov)
+
+Command: /speckit-analyze
+
+IMPORTANT: The project root is the current workspace folder C:\Users\Dell\Documents\AISDLCAssignment\Part1A. Work inside Part1A only. Never use the parent folder.
+
+Analyze consistency between spec.md, plan.md and tasks.md in specs/001-sprint-capacity-velocity. Report any gaps, contradictions or requirements without tasks.
+
+Copilot question: "Would you like me to suggest concrete remediation edits for the top 3 issues?" → My answer: 1 – Yes, suggest remediation edits.
+
+Follow-up fix prompt (normal chat message): asked Copilot to fix C1 (add task T049: run full harness + source review), C2 (mark spec Approved by Sneha Sharma), A1 (define test environment: my Windows laptop, Node.js 24), I1 (align branch wording). Copilot changed spec.md, plan.md, tasks.md only.

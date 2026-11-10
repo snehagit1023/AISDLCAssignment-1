@@ -1,10 +1,12 @@
 # Feature Specification: Sprint Capacity & Velocity Calculator
 
-**Feature Branch**: Not created (no `before_specify` hook is configured)
+**Feature Branch**: 001-sprint-capacity-velocity (feature folder name; no separate Git branch created)
 
 **Created**: 2026-11-06
 
-**Status**: Draft
+**Status**: Approved
+
+**Approved by**: Sneha Sharma (Product Owner), 2026-11-10
 
 **Input**: User description: "Build a command-line tool that tells a Scrum Master, before sprint planning, whether planned story points fit a sprint's real capacity."
 
@@ -105,7 +107,7 @@ As a Scrum Master preparing sprint data, I want invalid files and values to prod
 
 - **NFR-001**: The tool MUST run on Node.js 20 or later, use plain JavaScript with CommonJS modules, and have no runtime dependencies beyond Node.js built-ins. It MUST be command-line only, with no user interface or database.
 - **NFR-002**: The tool MUST make no network calls. It MUST read input files as data and MUST NOT execute their contents. Source code MUST contain no secrets, API keys, or machine-specific paths.
-- **NFR-003**: For a valid input containing 50 team members, the user MUST receive the completed report in under 1 second, measured from command invocation to completed output on the project's designated test environment.
+- **NFR-003**: For a valid input containing 50 team members, the automated NFR-003 test MUST complete in under 1 second on the developer's Windows laptop running Node.js 24 during a normal run. Measure from CLI invocation through completed output; exclude fixture creation.
 - **NFR-004**: Every functional and non-functional requirement MUST be covered by at least one automated test whose test name begins with the requirement ID. Every validation rule MUST have at least one failure-case test.
 - **NFR-005**: The implementation site for every functional requirement MUST include a code comment containing its requirement ID.
 
@@ -131,7 +133,7 @@ As a Scrum Master preparing sprint data, I want invalid files and values to prod
 - **AC-018 (FR-018)**: PASS if repeated runs using identical file contents and output mode produce byte-for-byte identical output; otherwise FAIL.
 - **AC-019 (NFR-001)**: PASS if runtime compatibility and dependency inspection confirm the required runtime, language/module format, built-in-only runtime dependencies, and CLI-only scope; otherwise FAIL.
 - **AC-020 (NFR-002)**: PASS if source review and automated checks find no network calls, executed input, secrets, API keys, or machine-specific paths; otherwise FAIL.
-- **AC-021 (NFR-003)**: PASS if the 50-member performance test completes in less than 1,000 milliseconds on the designated test environment; otherwise FAIL.
+- **AC-021 (NFR-003)**: PASS if the automated 50-member performance test completes in less than 1,000 milliseconds on the developer's Windows laptop running Node.js 24 during a normal run, measured from CLI invocation through completed output and excluding fixture creation; otherwise FAIL.
 - **AC-022 (NFR-004)**: PASS if each FR and NFR has at least one passing automated test whose name starts with its ID, and every validation rule has a failure-case test; otherwise FAIL.
 - **AC-023 (NFR-005)**: PASS if each FR ID appears in a code comment at the site implementing that requirement; otherwise FAIL.
 
@@ -157,7 +159,7 @@ As a Scrum Master preparing sprint data, I want invalid files and values to prod
 - **SC-002**: 100% of valid inputs produce figures that match the specified formulas and rounding rules, including histories of fewer than three and more than three values.
 - **SC-003**: 100% of invalid-input test cases return exit code 1, produce no stdout, and provide the required actionable stderr message without a stack trace.
 - **SC-004**: 100% of repeated requests with identical input and output mode produce byte-for-byte identical output.
-- **SC-005**: A 50-member valid sprint input produces a complete report in under 1 second on the designated test environment.
+- **SC-005**: The automated NFR-003 test produces a complete report for a valid 50-member sprint input in under 1 second on the developer's Windows laptop running Node.js 24 during a normal run, measured from CLI invocation through completed output and excluding fixture creation.
 - **SC-006**: A reviewer can verify that the report communicates whether planned work fits capacity and the size of any over- or under-commitment from the output alone.
 
 ## Assumptions
@@ -170,5 +172,5 @@ As a Scrum Master preparing sprint data, I want invalid files and values to prod
 - Forecast calculation uses the exact mean of the selected velocity values; the one-decimal average is for reporting only.
 - `FITS` includes both threshold boundaries: planned points may equal 80% of forecast or equal forecast. If forecast and planned points are both zero, the verdict is `FITS`.
 - A file that exists but cannot be read is treated as an input file error and uses a field/file-naming `Error:` message.
-- Performance is measured on the project's designated test environment; test setup and input-file creation are excluded, but invocation and completed output are included.
+- Performance is measured by the automated NFR-003 test on the developer's Windows laptop running Node.js 24 during a normal run. Fixture creation is excluded; measurement includes CLI invocation through completed output.
 - User stories, requirements, and acceptance criteria in this document define the requested scope; no unresolved questions remain.

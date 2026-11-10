@@ -66,7 +66,7 @@ This is a single Node.js project rooted at `Part1A`. Source files are in `src/`,
 - [ ] T017 [US1] Add calculator tests named with `FR-007` in `tests/calculator.test.js` for `OVER_COMMITTED`, `FITS`, and `UNDER_COMMITTED`, their differences, the inclusive 80% boundary, forecast equality, and zero-forecast behavior.
 - [ ] T018 [US1] Add calculator and CLI tests named with `FR-008` in `tests/calculator.test.js` and `tests/cli.test.js` confirming successful `NO_HISTORY`, populated capacities, null JSON history values, `N/A` text values, and exit code 0.
 - [ ] T019 [US1] Add a CLI test named with `FR-009` in `tests/cli.test.js` asserting exactly six readable lines, exact labels/order, one-decimal display, and the worked-example verdict wording.
-- [ ] T020 [US1] Add a CLI performance test named with `NFR-003` in `tests/cli.test.js` that invokes a valid 50-member report and asserts completion in under 1,000 ms, excluding fixture creation from the measured interval.
+- [ ] T020 [US1] Add a CLI performance test named with `NFR-003` in `tests/cli.test.js` that invokes a valid 50-member report and asserts completion in under 1,000 ms on the developer's Windows laptop running Node.js 24 during a normal run, measured from CLI invocation through completed output and excluding fixture creation.
 
 ### Implementation for User Story 1
 
@@ -139,6 +139,7 @@ This is a single Node.js project rooted at `Part1A`. Source files are in `src/`,
 **Purpose**: Verify the full requirement set and unchanged project quality gates.
 
 - [ ] T048 Run `npm test`, `npm run lint`, `npm run security`, and `npm audit --audit-level=high` for `NFR-001` through `NFR-005`; confirm all tests pass, the 50-member test meets `NFR-003`, lint has zero errors, security has zero high findings, audit has zero high/critical vulnerabilities, runtime dependencies are built-ins only, and no `.harness/` file changed. Use `package.json` and `.harness/` as the verification targets.
+- [ ] T049 Run the unchanged project harness (`node .harness/run-harness.js`), save its gate results in `evidence/`, and perform a source review against the constitution (`NFR-002`, `NFR-004`). Implementation is not complete until the harness reports PASS for every gate.
 
 ## Dependencies & Execution Order
 
@@ -148,7 +149,7 @@ This is a single Node.js project rooted at `Part1A`. Source files are in `src/`,
 2. **US1 (T009–T028)**: P1 is the MVP. It implements the common calculation and readable CLI behavior.
 3. **US2 (T029–T032)**: P2 adds JSON rendering on top of the US1 report and CLI.
 4. **US3 (T033–T047)**: P3 completes strict input and CLI error behavior on top of the US1 calculator and CLI.
-5. **Polish (T048)**: Run the unchanged quality gates after all implementation tasks.
+5. **Polish (T048–T049)**: Run the unchanged quality gates after all implementation tasks.
 
 US2 and US3 both depend on US1's calculator and CLI baseline, but neither story's behavior depends on the other; after US1, they may be developed independently if work is coordinated to avoid simultaneous edits to `src/cli.js` and `tests/cli.test.js`.
 
@@ -164,7 +165,7 @@ T001 -> T002-T004 -> T005-T008
              US2: T029-T032  US3: T033-T047
                     \         /
                      v       v
-                      T048
+                      T048 -> T049
 ```
 
 ### Parallel execution examples
@@ -182,14 +183,14 @@ T001 -> T002-T004 -> T005-T008
 1. **MVP first**: Complete setup/foundation and US1 (T001–T028), then verify the worked example, no-history output, and performance target.
 2. **Incremental delivery**: Add stable JSON output in US2, then complete all validation and file/argument errors in US3.
 3. **Test-first**: Add each requirement-specific test before or alongside its implementation; preserve requirement IDs in test names and implementation comments.
-4. **Final quality gates**: Complete T048 without changing harness scripts, rules, or tests to hide failures.
+4. **Final quality gates**: Complete T048 and T049 without changing harness scripts, rules, or tests to hide failures.
 
 ## Completion Validation
 
-- Total tasks: 48
+- Total tasks: 49
 - Task count per user story: US1 — 20; US2 — 4; US3 — 15
 - Setup/foundational tasks: 8
-- Polish tasks: 1
+- Polish tasks: 2
 - Parallel opportunities: Separate setup configuration files (subject to serializing `package.json` edits), worked/no-history fixtures, independent invalid fixture files, and separate US2/US3 work after US1 with coordination on shared files.
 - Independent test criteria: US1 verifies worked-example calculations and exact six-line readable output plus empty-history handling; US2 verifies the exact seven-key JSON object and byte-for-byte repeatability; US3 verifies every validation/file/argument failure contract.
 - Suggested MVP scope: Setup and foundational tasks plus US1 (P1).

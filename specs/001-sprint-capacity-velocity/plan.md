@@ -1,6 +1,6 @@
 # Implementation Plan: Sprint Capacity & Velocity Calculator
 
-**Branch**: `001-sprint-capacity-velocity` | **Date**: 2026-11-10 | **Spec**: [spec.md](./spec.md)
+**Feature Branch**: 001-sprint-capacity-velocity (feature folder name; no separate Git branch created) | **Date**: 2026-11-10 | **Spec**: [spec.md](./spec.md)
 
 **Input**: Approved feature specification and user-provided technical constraints.
 
@@ -28,8 +28,10 @@ as development-only dependencies
 
 **Project Type**: Command-line application
 
-**Performance Goals**: Complete a valid 50-member report in less than 1 second, measured
-from CLI invocation through completed output on the designated test environment
+**Performance Goals**: The automated NFR-003 test must complete a valid 50-member report
+in less than 1 second on the developer's Windows laptop running Node.js 24 during a
+normal run, measured from CLI invocation through completed output and excluding fixture
+creation
 
 **Constraints**: No runtime dependencies, network calls, UI, database, credentials,
 secrets, or machine-specific paths. Read input as data only. Preserve the supplied

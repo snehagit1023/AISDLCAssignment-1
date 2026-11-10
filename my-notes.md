@@ -10,3 +10,5 @@
 10 Nov – Reviewed plan.md: nothing out of scope (no DB, no UI, no extra runtime packages); traceability table covers all 18 FRs + 5 NFRs; constitution check PASS before and after design. Approved.
 10 Nov – Watch point: AI chose a complex BigInt helper for rounding instead of a simple method. If tests fail later, check this area first.
 10 Nov – Tasks generated: 48 tasks (setup 8, US1 20, US2 4, US3 15, polish 1), 18 steps in 4m 33s. Reviewed: every FR-001–FR-018 and NFR-001–NFR-005 has at least one test task and one implementation task; tests come before code; .gitignore task included. Approved.
+10 Nov – Analyze found 2 CRITICAL, 1 HIGH, 1 LOW issues; coverage 100% (29/29). C1: no task to run full harness + source review. C2: spec still "Draft" but constitution needs approved spec. A1: performance test environment undefined. I1: branch wording inconsistent. Report saved in evidence/analyze-report.md.
+10 Nov – Fixed all 4 through Copilot (spec, plan, tasks updated; added T049). I approved the spec as Product Owner. Root cause: spec/plan gaps, not AI hallucination – analyze caught them before any code was written.
