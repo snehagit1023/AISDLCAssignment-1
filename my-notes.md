@@ -9,3 +9,4 @@
 10 Nov – Plan created: plan.md, research.md, data-model.md, contracts/command.md, quickstart.md.
 10 Nov – Reviewed plan.md: nothing out of scope (no DB, no UI, no extra runtime packages); traceability table covers all 18 FRs + 5 NFRs; constitution check PASS before and after design. Approved.
 10 Nov – Watch point: AI chose a complex BigInt helper for rounding instead of a simple method. If tests fail later, check this area first.
+10 Nov – Tasks generated: 48 tasks (setup 8, US1 20, US2 4, US3 15, polish 1), 18 steps in 4m 33s. Reviewed: every FR-001–FR-018 and NFR-001–NFR-005 has at least one test task and one implementation task; tests come before code; .gitignore task included. Approved.

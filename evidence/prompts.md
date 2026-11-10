@@ -75,3 +75,11 @@ Describe the architecture, project structure, data model of the input file and t
 
 Copilot question during plan: "Should the forecast use the exact mean of the selected past velocities, or the mean rounded to one decimal place?"
 My answer: 1 – Use exact mean for forecast; round only for display (recommended).
+
+## Step 5 – tasks (10 Nov)
+
+Command: /speckit-tasks
+
+IMPORTANT: The project root is the current workspace folder C:\Users\Dell\Documents\AISDLCAssignment\Part1A. Work inside Part1A only. Never use the parent folder.
+
+Generate dependency-ordered tasks from the plan. Every task names the requirement IDs (FR/NFR) it delivers. Include tasks for: project setup (package.json with an npm test script, ESLint config with eslint-plugin-security, .gitignore for node_modules and .env), example input files, validation, each calculation, the CLI and output formats, and one test task per requirement including failure cases. Test tasks come before or alongside the code they verify.
