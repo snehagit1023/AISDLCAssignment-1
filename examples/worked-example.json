@@ -1,0 +1,11 @@
+{
+  "sprintLengthDays": 10,
+  "team": [
+    { "name": "Asha", "leaveDays": 2 },
+    { "name": "Ben" },
+    { "name": "Chitra", "allocation": 0.5 },
+    { "name": "Dev" }
+  ],
+  "pastVelocities": [18, 22, 26, 24],
+  "plannedPoints": 25
+}
