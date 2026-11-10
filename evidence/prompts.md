@@ -94,3 +94,5 @@ Analyze consistency between spec.md, plan.md and tasks.md in specs/001-sprint-ca
 Copilot question: "Would you like me to suggest concrete remediation edits for the top 3 issues?" → My answer: 1 – Yes, suggest remediation edits.
 
 Follow-up fix prompt (normal chat message): asked Copilot to fix C1 (add task T049: run full harness + source review), C2 (mark spec Approved by Sneha Sharma), A1 (define test environment: my Windows laptop, Node.js 24), I1 (align branch wording). Copilot changed spec.md, plan.md, tasks.md only.
+
+10 Nov – Re-ran analyze after fixes: CRITICAL 2 → 0, HIGH 1 → 0. Remaining: I1 MEDIUM (JSON tests listed in US1 but JSON renderer built in US2 – only affects mid-way checkpoint since implement runs all tasks) and D1 LOW (SC-004/SC-005 repeat FR-018/NFR-003). My decision: accept both as known limitations, no more analyze loops, to save Copilot credits. Report saved in evidence/analyze-report-rerun.md.
