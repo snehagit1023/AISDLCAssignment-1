@@ -53,3 +53,25 @@ Non-functional: Node.js built-ins only at runtime, no network calls; finishes in
 Out of scope: user interface, database, user accounts, multiple sprints per file, story-level planning.
 
 Write user stories with priorities, numbered functional requirements (FR-001 ...), non-functional requirements, and measurable acceptance criteria that can each be checked as pass or fail. List assumptions and any unresolved questions.
+## Step 3 – clarify (08 Nov)
+/speckit-clarify  IMPORTANT: The project root is the current workspace folder C:\Users\Dell\Documents\AISDLCAssignment\Part1A. Work inside Part1A only. Never use the parent folder.
+
+Review the spec in specs/001-sprint-capacity-velocity/spec.md for ambiguities. Focus areas to check include: the rounding method for one-decimal values, and the exact wording of each line in the readable report.
+
+## Step 4 – plan (10 Nov)
+Command: /speckit-plan
+
+IMPORTANT: The project root is the current workspace folder C:\Users\Dell\Documents\AISDLCAssignment\Part1A. Work inside Part1A only. Never use the parent folder.
+
+Technology constraints:
+- Runtime: Node.js 20+, plain JavaScript, CommonJS. No runtime dependencies (Node.js built-ins only).
+- Interface: command line only: node src/cli.js report <file> [--json]. No UI, no database, no network.
+- Structure: src/calculator.js (pure calculation and validation functions), src/cli.js (argument parsing, file reading, output, exit codes), tests/ (node:test files), examples/ (sample JSON input files including the worked example and invalid cases), .harness/ (harness files, already present: do not modify).
+- Tests: built-in node:test runner with node:assert/strict, run with "npm test" (node --test tests/). Each test name starts with the requirement ID it verifies.
+- Quality tools (devDependencies only): ESLint with the eslint-plugin-security plugin, plus npm audit.
+- Read and follow .harness/style-guide.md and .harness/harness-rules.md.
+
+Describe the architecture, project structure, data model of the input file and the output object, the validation order, error handling, and the test strategy, including a traceability table mapping each FR and NFR to the module and test file that covers it. Explain key decisions. Ensure the plan complies with the constitution and the approved specification.
+
+Copilot question during plan: "Should the forecast use the exact mean of the selected past velocities, or the mean rounded to one decimal place?"
+My answer: 1 – Use exact mean for forecast; round only for display (recommended).

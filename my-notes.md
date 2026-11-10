@@ -4,3 +4,8 @@
 05 Nov – Constitution v1.0.0 created. Reviewed the red/green changes: placeholders replaced with my 9 rules. Approved.
 06 Nov – Spec created: 18 FRs, 5 NFRs, 23 pass/fail acceptance criteria. Copilot split my 12 rules into 18 and added N/A display + fixed JSON key order (accepted). Gap noticed: rounding method not stated – to raise in clarify.
 08 Nov – Clarify: Copilot asked 2 questions. Q1 rounding tie rule → chose A, round half up. Q2 readable report wording → chose A, exact six-line format. Spec updated (+17 −10). All categories Clear/Resolved.
+10 Nov – Created .harness/style-guide.md and .harness/harness-rules.md (feedforward rules) and committed them BEFORE running the plan.
+10 Nov – Plan step: Copilot found a real gap in the spec – should the forecast use the exact or the rounded average velocity? I chose exact mean, rounded only for display. Copilot then updated spec.md and the acceptance criterion to record this decision (spec changed through the SDD flow, not silently).
+10 Nov – Plan created: plan.md, research.md, data-model.md, contracts/command.md, quickstart.md.
+10 Nov – Reviewed plan.md: nothing out of scope (no DB, no UI, no extra runtime packages); traceability table covers all 18 FRs + 5 NFRs; constitution check PASS before and after design. Approved.
+10 Nov – Watch point: AI chose a complex BigInt helper for rounding instead of a simple method. If tests fail later, check this area first.

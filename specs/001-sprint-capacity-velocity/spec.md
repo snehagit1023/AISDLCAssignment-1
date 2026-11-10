@@ -15,6 +15,10 @@
 - Q: How should capacity and average velocity be rounded when the first discarded decimal digit is exactly 5? → A: Round half up to one decimal place.
 - Q: What exact labels and wording should the readable report use for each figure and its final verdict line? → A: Use the agreed six-line report format with fixed labels, order, and verdict wording.
 
+### Session 2026-11-10
+
+- Q: Should the forecast use the exact mean of the selected past velocities, or the mean rounded to one decimal place? → A: Use the exact mean for the forecast; round only for display.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Assess a Sprint Plan (Priority: P1)
@@ -83,7 +87,7 @@ As a Scrum Master preparing sprint data, I want invalid files and values to prod
 - **FR-003**: The tool MUST calculate full capacity as the sum of `sprintLengthDays × allocation` for every team member and report it to one decimal place in person-days, rounding ties up (for example, 1.25 to 1.3).
 - **FR-004**: The tool MUST calculate available capacity as the sum of `(sprintLengthDays - leaveDays) × allocation` for every team member and report it to one decimal place in person-days, rounding ties up.
 - **FR-005**: When history is present, the tool MUST calculate the mean of the most recent three past velocity values, or all values when fewer than three exist, and report it to one decimal place, rounding ties up.
-- **FR-006**: When history is present, the tool MUST calculate forecast points as average velocity multiplied by available capacity divided by full capacity, rounded down to a whole number.
+- **FR-006**: When history is present, the tool MUST calculate forecast points using the unrounded mean of the selected past velocity values multiplied by available capacity divided by full capacity, then rounded down to a whole number. Rounding the mean for display MUST NOT affect the forecast.
 - **FR-007**: With history present, the tool MUST report `OVER_COMMITTED` when planned points exceed forecast points, with difference equal to planned points minus forecast points; `FITS` when planned points are between 80% of forecast and forecast inclusive, with difference zero; and `UNDER_COMMITTED` when planned points are below 80% of forecast, with difference equal to forecast minus planned points.
 - **FR-008**: When `pastVelocities` is empty, the tool MUST report `NO_HISTORY`, still calculate and report capacity, and set average velocity, forecast points, and difference points to null in JSON output. In the readable report, it MUST display average velocity and forecast as `N/A` and end with `Verdict: NO_HISTORY`. Difference is represented by the verdict line and is not shown separately in readable output. The command MUST exit with code 0.
 - **FR-009**: The default report MUST contain exactly these six lines in this order, substituting the calculated values: `Full capacity: <value> person-days`; `Available capacity: <value> person-days`; `Average velocity: <value> points`; `Forecast: <value> points`; `Planned points: <value>`; `Verdict: <verdict>`. Capacity and velocity MUST display one decimal place. The verdict line MUST be exactly `Verdict: OVER_COMMITTED by <difference> points`, `Verdict: FITS`, `Verdict: UNDER_COMMITTED by <difference> points`, or `Verdict: NO_HISTORY`, as applicable. For the example input, the final line MUST be `Verdict: OVER_COMMITTED by 3 points`.
@@ -112,7 +116,7 @@ As a Scrum Master preparing sprint data, I want invalid files and values to prod
 - **AC-003 (FR-003)**: PASS if the example input reports full capacity as exactly 35.0 person-days and a tie such as 1.25 is reported as 1.3; otherwise FAIL.
 - **AC-004 (FR-004)**: PASS if the example input reports available capacity as exactly 33.0 person-days and exact half-tenth ties round up; otherwise FAIL.
 - **AC-005 (FR-005)**: PASS if the example input reports 24.0, a one-value history reports that value to one decimal place, histories longer than three values use only the latest three, and exact half-tenth ties round up; otherwise FAIL.
-- **AC-006 (FR-006)**: PASS if the example input forecasts 22 and a fractional forecast is rounded down, never rounded to nearest; otherwise FAIL.
+- **AC-006 (FR-006)**: PASS if the example input forecasts 22, fractional forecasts are rounded down rather than to nearest, and a 10-day sprint with 4 leave days and history `[0, 0, 10]` forecasts 2 using the exact mean (while displaying average velocity as 3.3); otherwise FAIL.
 - **AC-007 (FR-007)**: PASS if tests establish each of the three verdicts, including equality at the 80% threshold and at forecast, and each required difference; otherwise FAIL.
 - **AC-008 (FR-008)**: PASS if empty history reports `NO_HISTORY`, preserves capacity figures, returns JSON null for average velocity, forecast, and difference, displays average velocity and forecast as `N/A` in the readable report, ends that report with `Verdict: NO_HISTORY`, and exits 0; otherwise FAIL.
 - **AC-009 (FR-009)**: PASS if the default report has exactly the six specified lines with the exact labels and order, uses the specified verdict wording, and the example ends exactly with `Verdict: OVER_COMMITTED by 3 points`; otherwise FAIL.
@@ -163,6 +167,7 @@ As a Scrum Master preparing sprint data, I want invalid files and values to prod
 - Member names are trimmed for duplicate detection and compared case-insensitively; the displayed name does not affect calculations.
 - Fractional leave days are permitted because the requirement sets bounds but does not require whole-day leave.
 - With no velocity history, average velocity is null because no average can be calculated; forecast and difference are also null as specified.
+- Forecast calculation uses the exact mean of the selected velocity values; the one-decimal average is for reporting only.
 - `FITS` includes both threshold boundaries: planned points may equal 80% of forecast or equal forecast. If forecast and planned points are both zero, the verdict is `FITS`.
 - A file that exists but cannot be read is treated as an input file error and uses a field/file-naming `Error:` message.
 - Performance is measured on the project's designated test environment; test setup and input-file creation are excluded, but invocation and completed output are included.
