@@ -1,0 +1,95 @@
+Gate: contract
+Result: PASS
+Command: node src/cli.js report <temp files> [--json]
+Exit code: 0
+Duration: 0 ms
+
+--- stdout ---
+[
+  {
+    "id": "FR-003/004/005/006/007/010",
+    "title": "worked example JSON values and key order (AC-003..AC-007, AC-010)",
+    "ok": true,
+    "observed": "exit 0; stdout: \"{\\\"fullCapacityDays\\\":35,\\\"availableCapacityDays\\\":33,\\\"averageVelocity\\\":24,\\\"forecastPoints\\\":22,\\\"plannedPoints\\\":25,\\\"verdict\\\":\\\"OVER_COMMITTED\\\",\\\"differencePoints\\\":3}\"; stderr: \"\""
+  },
+  {
+    "id": "FR-009",
+    "title": "readable report ends with the exact verdict line (AC-009)",
+    "ok": true,
+    "observed": "exit 0; stdout: \"Full capacity: 35.0 person-days\\nAvailable capacity: 33.0 person-days\\nAverage velocity: 24.0 points\\nForecast: 22 points\\nPlanned points: 25\\nVerdict: OVER_COMMITTED by 3 points\"; stderr: \"\""
+  },
+  {
+    "id": "FR-007",
+    "title": "planned 22 = forecast is FITS, difference 0",
+    "ok": true,
+    "observed": "exit 0; stdout: \"{\\\"fullCapacityDays\\\":35,\\\"availableCapacityDays\\\":33,\\\"averageVelocity\\\":24,\\\"forecastPoints\\\":22,\\\"plannedPoints\\\":22,\\\"verdict\\\":\\\"FITS\\\",\\\"differencePoints\\\":0}\"; stderr: \"\""
+  },
+  {
+    "id": "FR-007",
+    "title": "planned 18 (>= 80% of 22) is FITS, difference 0",
+    "ok": true,
+    "observed": "exit 0; stdout: \"{\\\"fullCapacityDays\\\":35,\\\"availableCapacityDays\\\":33,\\\"averageVelocity\\\":24,\\\"forecastPoints\\\":22,\\\"plannedPoints\\\":18,\\\"verdict\\\":\\\"FITS\\\",\\\"differencePoints\\\":0}\"; stderr: \"\""
+  },
+  {
+    "id": "FR-007",
+    "title": "planned 17 (< 80% of 22) is UNDER_COMMITTED by 5",
+    "ok": true,
+    "observed": "exit 0; stdout: \"{\\\"fullCapacityDays\\\":35,\\\"availableCapacityDays\\\":33,\\\"averageVelocity\\\":24,\\\"forecastPoints\\\":22,\\\"plannedPoints\\\":17,\\\"verdict\\\":\\\"UNDER_COMMITTED\\\",\\\"differencePoints\\\":5}\"; stderr: \"\""
+  },
+  {
+    "id": "FR-008",
+    "title": "empty history gives NO_HISTORY with nulls, exit 0 (AC-008)",
+    "ok": true,
+    "observed": "exit 0; stdout: \"{\\\"fullCapacityDays\\\":35,\\\"availableCapacityDays\\\":33,\\\"averageVelocity\\\":null,\\\"forecastPoints\\\":null,\\\"plannedPoints\\\":25,\\\"verdict\\\":\\\"NO_HISTORY\\\",\\\"differencePoints\\\":null}\"; stderr: \"\""
+  },
+  {
+    "id": "FR-011",
+    "title": "sprintLengthDays 31 rejected naming the field (AC-011)",
+    "ok": true,
+    "observed": "exit 1; stdout: \"\"; stderr: \"Error: sprintLengthDays must be a whole number from 1 to 30\""
+  },
+  {
+    "id": "FR-012",
+    "title": "duplicate member names rejected (AC-012)",
+    "ok": true,
+    "observed": "exit 1; stdout: \"\"; stderr: \"Error: team[1].name must be unique\""
+  },
+  {
+    "id": "FR-013",
+    "title": "leaveDays above sprint length rejected naming the field (AC-013)",
+    "ok": true,
+    "observed": "exit 1; stdout: \"\"; stderr: \"Error: team[0].leaveDays must be a finite number from 0 to sprintLengthDays\""
+  },
+  {
+    "id": "FR-014",
+    "title": "allocation 1.5 rejected naming the field (AC-014)",
+    "ok": true,
+    "observed": "exit 1; stdout: \"\"; stderr: \"Error: team[0].allocation must be a finite number from 0.1 to 1.0\""
+  },
+  {
+    "id": "FR-015",
+    "title": "fractional plannedPoints rejected naming the field (AC-015)",
+    "ok": true,
+    "observed": "exit 1; stdout: \"\"; stderr: \"Error: plannedPoints must be a non-negative whole number\""
+  },
+  {
+    "id": "FR-016",
+    "title": "missing file gives \"Error: file not found: <path>\" (AC-016)",
+    "ok": true,
+    "observed": "exit 1; stdout: \"\"; stderr: \"Error: file not found: C:\\\\Users\\\\Dell\\\\AppData\\\\Local\\\\Temp\\\\harness-7kQrB2\\\\does-not-exist.json\""
+  },
+  {
+    "id": "FR-016",
+    "title": "malformed JSON gives \"Error: invalid JSON in <path>\" (AC-016)",
+    "ok": true,
+    "observed": "exit 1; stdout: \"\"; stderr: \"Error: invalid JSON in C:\\\\Users\\\\Dell\\\\AppData\\\\Local\\\\Temp\\\\harness-7kQrB2\\\\broken.json\""
+  },
+  {
+    "id": "FR-018",
+    "title": "identical input gives byte-identical output (AC-018)",
+    "ok": true,
+    "observed": "run1 \"Full capacity: 35.0 person-days\\nAvailable capacity: 33.0 person-days\\nAverage velocity: 24.0 points\\nForecast: 22 points\\nPlanned points: 25\\nVerdict: OVER_COMMITTED by 3 points\\n\" | run2 \"Full capacity: 35.0 person-days\\nAvailable capacity: 33.0 person-days\\nAverage velocity: 24.0 points\\nForecast: 22 points\\nPlanned points: 25\\nVerdict: OVER_COMMITTED by 3 points\\n\""
+  }
+]
+--- stderr ---
+
