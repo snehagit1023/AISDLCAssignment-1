@@ -22,7 +22,7 @@ as development-only dependencies
 
 **Storage**: No persistent storage; read one JSON input file and write the report to stdout
 
-**Testing**: `node:test` and `node:assert/strict`, run by `npm test` (`node --test tests/`)
+**Testing**: `node:test` and `node:assert/strict`, run by `npm test` (`node --test`)
 
 **Target Platform**: Node.js 20+ on supported desktop operating systems
 
@@ -145,7 +145,7 @@ messages specified in FR-016. The CLI writes nothing to stdout on failure.
 
 ## Test Strategy and Requirement Traceability
 
-Use `node:test` with `node:assert/strict`; `npm test` runs `node --test tests/`. All test
+Use `node:test` with `node:assert/strict`; `npm test` runs `node --test`. All test
 names start with the FR/NFR ID they verify. Each validation rule gets a CLI failure test
 that verifies code 1, empty stdout, the `Error:` prefix and field/file name, and no
 stack trace. Unit tests cover pure formulas and boundary values. CLI tests cover exact
@@ -189,7 +189,7 @@ invalid JSON; unreadable file; and invalid command arguments.
 
 Run the project harness unchanged. The completion gates are:
 
-1. `npm test` — all `node:test` cases pass.
+1. `npm test` (`node --test`) — all `node:test` cases pass.
 2. `npm run lint` — ESLint reports zero errors.
 3. `npm run security` — security rules report zero high findings.
 4. `npm audit --audit-level=high` — zero high or critical vulnerabilities across declared
@@ -209,3 +209,8 @@ requested.
 
 No constitution violations or additional projects are proposed; no complexity exception
 is required.
+
+## Plan Amendments
+
+- **2026-11-11**: Updated the test command to `node --test` because `node --test tests/`
+  failed on Windows, where Node attempted to resolve `tests` as a module.
