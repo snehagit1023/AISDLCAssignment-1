@@ -13,3 +13,4 @@
 10 Nov – Analyze found 2 CRITICAL, 1 HIGH, 1 LOW issues; coverage 100% (29/29). C1: no task to run full harness + source review. C2: spec still "Draft" but constitution needs approved spec. A1: performance test environment undefined. I1: branch wording inconsistent. Report saved in evidence/analyze-report.md.
 10 Nov – Fixed all 4 through Copilot (spec, plan, tasks updated; added T049). I approved the spec as Product Owner. Root cause: spec/plan gaps, not AI hallucination – analyze caught them before any code was written.
 10 Nov – From agent log: plain "npm" commands failed in Copilot's terminal; it switched to "npm.cmd" (Windows PowerShell blocks npm's script). Also its own traceability test failed mid-implement (missing FR comments) and it fixed the code itself before finishing.
+10 Nov – Human check: ran the app on worked-example.json (OVER_COMMITTED by 3 – matches spec) and on my own Sprint_01.json (forecast 25, OVER by 15). Verified the maths by hand: correct.
