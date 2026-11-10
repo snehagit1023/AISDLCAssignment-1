@@ -1,0 +1,28 @@
+Gate: lint
+Result: PASS
+Command: npm.cmd run lint
+Exit code: 0
+Duration: 5462 ms
+
+--- stdout ---
+
+> sprint-capacity-velocity@1.0.0 lint
+> eslint src tests
+
+
+C:\Users\Dell\Documents\AISDLCAssignment\Part1A\src\cli.js
+  80:20  warning  Found readFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+C:\Users\Dell\Documents\AISDLCAssignment\Part1A\tests\helpers.js
+  17:5  warning  Found writeFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+C:\Users\Dell\Documents\AISDLCAssignment\Part1A\tests\traceability.test.js
+  26:22  warning  Found readFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  44:20  warning  Found readFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  83:20  warning  Found readFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+✖ 5 problems (0 errors, 5 warnings)
+
+
+--- stderr ---
+
