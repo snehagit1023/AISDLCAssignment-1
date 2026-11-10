@@ -138,8 +138,8 @@ This is a single Node.js project rooted at `Part1A`. Source files are in `src/`,
 
 **Purpose**: Verify the full requirement set and unchanged project quality gates.
 
-- [ ] T048 Run `npm test`, `npm run lint`, `npm run security`, and `npm audit --audit-level=high` for `NFR-001` through `NFR-005`; confirm all tests pass, the 50-member test meets `NFR-003`, lint has zero errors, security has zero high findings, audit has zero high/critical vulnerabilities, runtime dependencies are built-ins only, and no `.harness/` file changed. Use `package.json` and `.harness/` as the verification targets.
-- [ ] T049 Run the unchanged project harness (`node .harness/run-harness.js`), save its gate results in `evidence/`, and perform a source review against the constitution (`NFR-002`, `NFR-004`). Implementation is not complete until the harness reports PASS for every gate.
+- [x] T048 Run `npm test`, `npm run lint`, `npm run security`, and `npm audit --audit-level=high` for `NFR-001` through `NFR-005`; confirm all tests pass, the 50-member test meets `NFR-003`, lint has zero errors, security has zero high findings, audit has zero high/critical vulnerabilities, runtime dependencies are built-ins only, and no `.harness/` file changed. Use `package.json` and `.harness/` as the verification targets.
+- [x] T049 Run the unchanged project harness (`node .harness/run-harness.js`), save its gate results in `evidence/`, and perform a source review against the constitution (`NFR-002`, `NFR-004`). Implementation is not complete until the harness reports PASS for every gate.
 
 ## Dependencies & Execution Order
 
