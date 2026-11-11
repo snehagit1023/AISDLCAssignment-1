@@ -1,22 +1,24 @@
 # Harness Log – Part 1A: Sprint Capacity & Velocity Calculator
 
+> Structure and fact tables prepared with AI help (Claude). Narrative answers are my own (Sneha Sharma), given in a question-and-answer session; AI only fixed spelling and grammar.
+
 ## 1. Initial coding-agent generation and its context
 
 **Facts**
 
-| Item | Value |
+| What | In plain words |
 |---|---|
-| Coding agent | GitHub Copilot (Agent mode, model auto-routed to gpt-6-luna) |
-| Command | `/speckit-implement`, tasks T001–T048 |
-| Context given before coding | constitution.md v1.0.0, spec.md (Approved, 18 FR + 5 NFR), plan.md, tasks.md, .harness/style-guide.md, .harness/harness-rules.md |
-| Evidence | evidence/initial-generation/initial-code.zip, agent-summary.md, prompts.md (Step 7) |
-| Agent's own result | 23/24 tests passed; NFR-003 failed (50-member run 1,277 ms, limit 1,000 ms) |
+| Who wrote the code | GitHub Copilot, the AI coding assistant in VS Code (Agent mode; it picked the model gpt-6-luna by itself) |
+| What I asked it to do | Build the app by running the Spec Kit command `/speckit-implement`, which works through tasks T001 to T048 from my task list |
+| What it read before coding | My project rules (constitution, version 1.0.0), the approved specification (18 functional and 5 non-functional requirements), the plan, the task list, and my two harness rule files (style guide and harness rules) |
+| Where the proof is saved | The AI's first version of the code is in `evidence/initial-generation/initial-code.zip`; its full work log is in `agent-summary.md`; the exact prompt I used is in `prompts.md` (Step 7) |
+| How it went | 23 of its 24 tests passed. The one that failed was the speed test (NFR-003): a report for 50 team members took 1,277 milliseconds, but the limit is 1,000 milliseconds (1 second) |
 
 Copilot followed the spec because we gave it the constitution to follow. In agent-summary.md we can see it read all the files: constitution.md, spec.md, plan.md, tasks.md, style-guide.md and harness-rules.md. By this we can see that it followed them.
 
 ## 2. The harness
 
-**Facts:** one command, `node .harness/run-harness.js --label <name>
+**Facts:** one command, `node .harness/run-harness.js --label <name>`, written separately from the coding agent (with Claude's help) and committed before running.
 
 | # | Gate | Checks | Linked to |
 |---|---|---|---|
@@ -54,7 +56,7 @@ We ran the harness 3 times to be sure of the result, because during implementati
 - Earlier in the SDD flow: /speckit-analyze found 2 CRITICAL, 1 HIGH, 1 LOW issues; fixed through spec/plan/tasks; re-run showed 0 CRITICAL.
 - During implement the agent's own traceability test failed (missing FR comments) and the agent fixed the code itself.
 
-The cause was the environment on my laptop, Node.js alone took 1,736 ms to start, so the failure was not because of the code.
+The cause was the environment (option 4 of the four causes: unclear spec, technology, AI hallucination, environment): on my laptop, Node.js alone took 1,736 ms to start, so the failure was not because of the code.
 
 ## 5. Repair and re-execution
 
