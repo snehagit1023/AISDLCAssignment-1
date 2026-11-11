@@ -96,3 +96,60 @@ Copilot question: "Would you like me to suggest concrete remediation edits for t
 Follow-up fix prompt (normal chat message): asked Copilot to fix C1 (add task T049: run full harness + source review), C2 (mark spec Approved by Sneha Sharma), A1 (define test environment: my Windows laptop, Node.js 24), I1 (align branch wording). Copilot changed spec.md, plan.md, tasks.md only.
 
 10 Nov – Re-ran analyze after fixes: CRITICAL 2 → 0, HIGH 1 → 0. Remaining: I1 MEDIUM (JSON tests listed in US1 but JSON renderer built in US2 – only affects mid-way checkpoint since implement runs all tasks) and D1 LOW (SC-004/SC-005 repeat FR-018/NFR-003). My decision: accept both as known limitations, no more analyze loops, to save Copilot credits. Report saved in evidence/analyze-report-rerun.md.
+## Step 6b – analyze re-run (10 Nov)
+
+Command: /speckit-analyze
+
+IMPORTANT: The project root is the current workspace folder C:\Users\Dell\Documents\AISDLCAssignment\Part1A. Work inside Part1A only. Never use the parent folder.
+
+Analyze consistency between spec.md, plan.md and tasks.md in specs/001-sprint-capacity-velocity. Report any gaps, contradictions or requirements without tasks.
+
+Copilot question: "Would you like me to suggest concrete remediation edits for the top 3 issues?" → My answer: 2 – No, report only.
+
+## Step 7 – implement (10 Nov)
+
+Command: /speckit-implement
+
+IMPORTANT: The project root is the current workspace folder C:\Users\Dell\Documents\AISDLCAssignment\Part1A. Work inside Part1A only. Never use the parent folder.
+
+Implement tasks T001 to T048 in tasks.md in order. Before writing code, read .specify/memory/constitution.md, specs/001-sprint-capacity-velocity/spec.md, plan.md, .harness/style-guide.md and .harness/harness-rules.md, and follow them. Tag each exported function with a comment naming its requirement ID, and start every test name with the requirement ID it verifies. Do not modify, create or delete anything in .harness/. Do not do task T049 – the human will run the harness after implementation. Do not add runtime dependencies. When finished, run npm test and report the result, then list each requirement ID with the test names that cover it.
+
+## Step 8 – harness runs (10–11 Nov)
+
+Run by me in the terminal (not a Copilot prompt):
+
+    node .harness/run-harness.js --label initial
+    node .harness/run-harness.js --label rerun-2
+    node .harness/run-harness.js --label rerun-3
+    node .harness/run-harness.js --label video-demo
+
+## Step 9 – plan amendment (11 Nov)
+
+Normal chat message (no /speckit command):
+
+IMPORTANT: Work inside C:\Users\Dell\Documents\AISDLCAssignment\Part1A only. Do not change any code, tests or anything in .harness/.
+
+During implementation the npm test script was changed from "node --test tests/" (as written in plan.md) to "node --test", because the planned command failed on Windows (Node tried to resolve "tests" as a module). Record this deviation in specs/001-sprint-capacity-velocity/plan.md: update the Testing line and the Quality Gates section to say "node --test", and add a short "Plan amendments" note with today's date (2026-11-11) explaining the reason. Then list the lines you changed.
+
+## Step 10 – repair cycle 1: analysis of harness run 4 failure (11 Nov)
+
+Normal chat message (no /speckit command). Reply saved in evidence/repair-1-analysis.md.
+
+IMPORTANT: Work inside C:\Users\Dell\Documents\AISDLCAssignment\Part1A only. Do not change any files yet.
+
+The harness failed. Read evidence/harness-runs/run-004-video-demo/feedback.md. Analyse the root cause of the NFR-003 failure using this evidence:
+- during /speckit-implement: 1,277 ms (FAIL)
+- harness runs 1-3: 904, 895, 882 ms (PASS)
+- harness run 4, while a screen recorder was running: 1,339 ms (FAIL)
+- a Node.js no-op process alone took about 1,736 ms on this laptop.
+
+Propose repair options that do NOT weaken the requirement, raise the 1,000 ms threshold, delete or skip tests, or modify anything in .harness/. For each option, say which spec, plan, tasks, test or code files would change and whether it needs a specification change.
+
+## Step 11 – repair cycle 1: measurement (11 Nov)
+
+Same chat, normal message:
+
+Do option 1 and the profiling part of option 2 now, without changing any project files (do not edit spec, plan, tasks, tests, src or .harness). With no screen recorder running, in the terminal, measure 5 times each:
+(a) an empty Node.js start: node -e "0"
+(b) node src/cli.js report on a 50-member input file that you create in the system temp folder.
+Report every time and the average for (a) and (b), and estimate how much of the CLI time is Node startup versus the application's own work. Then say whether a code optimisation could realistically meet the 1,000 ms requirement on this laptop.

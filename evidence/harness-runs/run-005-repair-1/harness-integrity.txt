@@ -1,0 +1,10 @@
+Gate: harness-integrity
+Result: PASS
+Command: git status --porcelain -- .harness
+Exit code: 0
+Duration: 117 ms
+
+--- stdout ---
+
+--- stderr ---
+
