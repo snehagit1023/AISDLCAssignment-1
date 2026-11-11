@@ -42,6 +42,9 @@ A separate harness is important to have a human overview and review, instead of 
 | 1 | initial | 10 Nov 2026 | 7f79241 | PASS | 904 ms ✅ |
 | 2 | rerun-2 | 10 Nov 2026 | 7f79241 | PASS | 895 ms ✅ |
 | 3 | rerun-3 | 10 Nov 2026 | 7f79241 | PASS | 882 ms ✅ |
+| 4 | video-demo (screen recorder running) | 11 Nov 2026 | 9f5b3cc | **FAIL** (unit-tests) | 1,339 ms ❌ |
+| 5 | repair-1 (after diagnosis, recorder off) | 11 Nov 2026 | c0802c1 | PASS | 895 ms ✅ |
+| 6 | video-demo-2 (screen recorder running) | 11 Nov 2026 | 48fa85b | **FAIL** (unit-tests) | 1,189 ms ❌ |
 
 Full results: evidence/harness-results.md and evidence/harness-runs/.
 
@@ -67,17 +70,35 @@ The cause was the environment (option 4 of the four causes: unclear spec, techno
 
 I did not ask Copilot to change any code, because all three harness runs passed and the handout says not to manufacture a failure.
 
+## 5b. Repair cycle 1 – harness run 4 failure (added 11 Nov)
+
+**Facts**
+- Run 4 failed the unit-tests gate: NFR-003 took 1,339 ms (limit 1,000 ms) while a screen recorder was running. The harness wrote evidence/harness-runs/run-004-video-demo/feedback.md.
+- Step 1 – feedback to the agent: Copilot was given feedback.md and asked for the root cause and repair options that do not weaken the requirement (reply: evidence/repair-1-analysis.md).
+- Step 2 – measurement by the agent, no files changed (evidence/repair-1-measurements.md): empty Node start 853–1,013 ms (first cold start 2,824 ms); full 50-member CLI run 832–859 ms, average 845 ms, 5/5 under 1,000 ms.
+- Copilot's conclusion: Node startup dominates; the app's own work is small; a code optimisation would not fix failures caused by slow Node startup; changing the measurement scope would weaken the requirement.
+- Step 3 – re-run of the same unchanged harness: run 5 PASS (895 ms).
+- No code, test, spec or harness change was made in this cycle.
+- Run 6 (11 Nov, during the second screen recording) failed the same way: NFR-003 1,189 ms. This confirms the same environment limitation.
+
+There was a failure in harness run 4, and it was recorded in the feedback.md file. We gave it to Copilot to analyse the failure and its root cause, and to give me suggestions or options to repair it.
+
+No code changes were required, because the delay happened during screen recording: Node took more time to start, as Windows might have been prioritising the screen recorder. We did not change the rule, but we have taken it as a limitation: when Windows is busy, there might be failures because of this delay.
+
+The repair cycle diagnosed the problem but did not repair any code, because the cause is not in the code. The rule and the test were not weakened, and the risk still remains, so it is recorded as a limitation.
+
 ## 6. Human review and final decision
 
 **Decision:** ACCEPT
 
 **Justification:**
 
-I would accept this app, because it enables me to calculate capacity, velocity and the sprint verdict dynamically for any valid sprint file. All 7 harness gates passed in three runs, and I checked it myself with my own Sprint_01.json, where the result was correct.
+I would accept this app, because it enables me to calculate capacity, velocity and the sprint verdict dynamically for any valid sprint file. All 7 harness gates passed in runs 1–3 and again in run 5 after the repair cycle, and I checked it myself with my own Sprint_01.json, where the result was correct.
 
 **Known limitations and residual risks:**
 
 - The speed test (NFR-003) has only about a 10% margin, so it could fail on a slower laptop.
+- When Windows is busy, there might be failures because of the Node startup delay (seen in run 4: 1,339 ms and run 6: 1,189 ms, both during screen recording).
 - npm audit found 3 moderate vulnerabilities in the development tools.
 - It was only tested on my laptop.
 

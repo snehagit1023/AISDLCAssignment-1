@@ -1,0 +1,55 @@
+{
+  "run": 7,
+  "label": "video-demo-3",
+  "startedAt": "2026-11-11T10:29:02.020Z",
+  "commit": "48fa85b",
+  "environment": {
+    "node": "v24.21.0",
+    "platform": "win32 10.0.26300"
+  },
+  "result": "FAIL",
+  "gates": [
+    {
+      "name": "harness-integrity",
+      "result": "PASS",
+      "requirement": "Constitution IX, harness-rules.md rule 4",
+      "observed": "no changes"
+    },
+    {
+      "name": "lint",
+      "result": "PASS",
+      "requirement": "Constitution VIII, NFR-005 (lint 0 errors)",
+      "observed": "exit code 0\n> sprint-capacity-velocity@1.0.0 lint\n> eslint src tests\n\n\nC:\\Users\\Dell\\Documents\\AISDLCAssignment\\Part1A\\src\\cli.js\n  80:20  warning  Found readFileSync from package \"node:fs\" with non literal argument at index 0  security/detect-non-literal-fs-filename\n\nC:\\Users\\Dell\\Documents\\AISDLCAssignment\\Part1A\\tests\\helpers.js\n  17:5  warning  Found writeFileSync from package \"node:fs\" with non literal argument at index 0  security/detect-non-literal-fs-filename\n\nC:\\Users\\Dell\\Documents\\AISDLCAssignment\\Part1A\\tests\\traceability.test.js\n  26:22  warning  Found readFileSync from package \"node:fs\" with non literal argument at index 0  security/detect-non-literal-fs-filename\n  44:20  warning  Found readFileSync from package \"node:fs\" with non literal argument at index 0  security/detect-non-literal-fs-filename\n  83:20  warning  Found readFileSync from package \"node:fs\" with non literal argument at index 0  security/detect-non-literal-fs-filename\n\n✖ 5 problems (0 errors, 5 warnings)"
+    },
+    {
+      "name": "security",
+      "result": "PASS",
+      "requirement": "Constitution VII/VIII, NFR-002 (0 high findings)",
+      "observed": "exit code 0\n> sprint-capacity-velocity@1.0.0 security\n> eslint src\n\n\nC:\\Users\\Dell\\Documents\\AISDLCAssignment\\Part1A\\src\\cli.js\n  80:20  warning  Found readFileSync from package \"node:fs\" with non literal argument at index 0  security/detect-non-literal-fs-filename\n\n✖ 1 problem (0 errors, 1 warning)"
+    },
+    {
+      "name": "audit",
+      "result": "PASS",
+      "requirement": "Constitution VIII (0 high/critical vulnerabilities)",
+      "observed": "exit code 0\n# npm audit report\n\nminimatch  7.0.0 - 11.0.0\nSeverity: moderate\nminimatch has potential denial of service via globparts amplification - https://github.com/advisories/GHSA-g3hv-75wg-m249\nfix available via `npm audit fix --force`\nWill install eslint@9.39.5, which is a breaking change\nnode_modules/minimatch\n  @eslint/config-array  >=0.23.0\n  Depends on vulnerable versions of minimatch\n  node_modules/@eslint/config-array\n    eslint  >=10.0.0-alpha.0\n    Depends on vulnerable versions of @eslint/config-array\n    Depends on vulnerable versions of minimatch\n    node_modules/eslint\n\n3 moderate severity vulnerabilities\n\nTo address all issues (including breaking changes), run:\n  npm audit fix --force"
+    },
+    {
+      "name": "unit-tests",
+      "result": "FAIL",
+      "requirement": "NFR-004 (all FR/NFR tests must pass)",
+      "observed": "tests 24, pass 23, fail 1\nFailing tests:\n- NFR-003 completes a 50-member report in under 1000 ms after fixture creation"
+    },
+    {
+      "name": "contract",
+      "result": "PASS",
+      "requirement": "spec.md acceptance criteria (harness-owned, independent of agent tests)",
+      "observed": "14/14 passed"
+    },
+    {
+      "name": "traceability",
+      "result": "PASS",
+      "requirement": "Constitution IV, NFR-004",
+      "observed": "23/23 IDs covered"
+    }
+  ]
+}
