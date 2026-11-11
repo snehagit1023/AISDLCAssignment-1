@@ -1,0 +1,3 @@
+11 Nov – Part 1B setup: specify init blocked by Windows Application Control 5+ times; workaround: copied .github and .specify from Part1A, removed feature.json, reset constitution to blank template.
+11 Nov – Created Gemini API key (Google AI Studio, free tier), stored in .env only; git status confirms .env is ignored.
+11 Nov – Part 1B constitution v1.0.0 created (10 principles, 30 steps, 1.3 credits). Spec Kit script blocked by PowerShell execution policy; Copilot re-ran it with Bypass for one process (allowed once). Ratification date was left as TODO – set to 2026-11-11 as Product Owner.
