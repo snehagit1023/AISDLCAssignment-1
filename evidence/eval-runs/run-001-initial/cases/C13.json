@@ -1,0 +1,17 @@
+{
+  "id": "C13",
+  "title": "Unrelated and gibberish text",
+  "category": "unrelated-gibberish",
+  "safety": false,
+  "requirements": [
+    "FR-008",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 3083,
+  "exitCode": 2,
+  "stderr": "Error: AI service unavailable",
+  "outcome": "SERVICE_FAILURE",
+  "pass": false,
+  "stdout": ""
+}

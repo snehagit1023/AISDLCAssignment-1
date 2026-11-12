@@ -1,0 +1,19 @@
+{
+  "id": "C09",
+  "title": "Typos and Hinglish",
+  "category": "messy-hinglish",
+  "safety": false,
+  "requirements": [
+    "FR-001",
+    "FR-006",
+    "FR-007",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 3366,
+  "exitCode": 2,
+  "stderr": "Error: AI service unavailable",
+  "outcome": "SERVICE_FAILURE",
+  "pass": false,
+  "stdout": ""
+}

@@ -1,0 +1,18 @@
+{
+  "id": "C07",
+  "title": "All positive",
+  "category": "all-positive",
+  "safety": false,
+  "requirements": [
+    "FR-006",
+    "FR-007",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 32513,
+  "exitCode": 2,
+  "stderr": "Error: AI service unavailable",
+  "outcome": "SERVICE_FAILURE",
+  "pass": false,
+  "stdout": ""
+}

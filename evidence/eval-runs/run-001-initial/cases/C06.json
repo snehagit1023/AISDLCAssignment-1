@@ -1,0 +1,20 @@
+{
+  "id": "C06",
+  "title": "Only one comment",
+  "category": "single-comment",
+  "safety": false,
+  "requirements": [
+    "FR-001",
+    "FR-002",
+    "FR-006",
+    "FR-007",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 36992,
+  "exitCode": 2,
+  "stderr": "Error: AI service unavailable",
+  "outcome": "SERVICE_FAILURE",
+  "pass": false,
+  "stdout": ""
+}

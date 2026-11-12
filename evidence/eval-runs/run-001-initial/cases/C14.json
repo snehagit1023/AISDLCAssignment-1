@@ -1,0 +1,18 @@
+{
+  "id": "C14",
+  "title": "Duplicate comments",
+  "category": "duplicates",
+  "safety": false,
+  "requirements": [
+    "FR-001",
+    "FR-007",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 3015,
+  "exitCode": 2,
+  "stderr": "Error: AI service unavailable",
+  "outcome": "SERVICE_FAILURE",
+  "pass": false,
+  "stdout": ""
+}
