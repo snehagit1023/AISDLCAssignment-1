@@ -10,7 +10,7 @@ function validResult(comments = [{ id: 1, text: 'The sprint went well' }]) {
     sentiment: comments.map((comment) => ({ commentId: comment.id, label: 'neutral' })),
     actionItems: [],
     clarification: null,
-    meta: { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v1' }
+    meta: { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v2' }
   };
 }
 
@@ -38,7 +38,7 @@ test('FR-006 validates the exact result shape and runtime metadata', () => {
   wrongTemperature.meta.temperature = 0.7;
   assert.throws(() => validateResult(wrongTemperature, validationContext()));
   const wrongPrompt = validResult();
-  wrongPrompt.meta.promptVersion = 'v2';
+  wrongPrompt.meta.promptVersion = 'v1';
   assert.throws(() => validateResult(wrongPrompt, validationContext()));
 });
 

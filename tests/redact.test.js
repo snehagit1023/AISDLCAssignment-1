@@ -20,7 +20,7 @@ test('FR-003 sends and returns only redacted canonical comments', async () => {
     sentiment: [{ commentId: 1, label: 'neutral' }],
     actionItems: [],
     clarification: null,
-    meta: { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v1' }
+    meta: { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v2' }
   }]);
 
   const result = await analyze(comments, { aiClient: fake.analyze });

@@ -15,7 +15,7 @@ test('FR-006 SC-004 analyzes 50 comments of 500 Unicode code points with valid r
     sentiment: comments.map((comment) => ({ commentId: comment.id, label: 'neutral' })),
     actionItems: [],
     clarification: null,
-    meta: { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v1' }
+    meta: { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v2' }
   };
   const fake = createFakeAiClient([response]);
 

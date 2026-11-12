@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const { analyze } = require('../src/analyze');
 const { createFakeAiClient } = require('./helpers/fakes');
 
-function analysisFor(comments, metadata = { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v1' }) {
+function analysisFor(comments, metadata = { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v2' }) {
   return {
     status: 'OK',
     comments: structuredClone(comments),
@@ -34,7 +34,7 @@ test('FR-006 FR-009 replaces model comments and metadata with canonical runtime 
   const result = await analyze(comments, { aiClient: fake.analyze });
 
   assert.deepEqual(result.comments, comments);
-  assert.deepEqual(result.meta, { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v1' });
+  assert.deepEqual(result.meta, { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v2' });
   assert.equal(fake.calls.length, 1);
 });
 
@@ -47,7 +47,7 @@ test('FR-008 returns clarification for irrelevant feedback and skips AI for empt
     sentiment: [],
     actionItems: [],
     clarification: 'Could you share feedback about your team or sprint?',
-    meta: { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v1' }
+    meta: { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v2' }
   };
   const fake = createFakeAiClient([clarification]);
   assert.deepEqual(await analyze(irrelevant, { aiClient: fake.analyze }), clarification);
