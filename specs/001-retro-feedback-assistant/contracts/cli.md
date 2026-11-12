@@ -52,8 +52,10 @@ configuration, or request URL containing a key.
 - `GEMINI_API_KEY` is read from the environment; optional local `.env` values do
   not override existing environment variables.
 - `GEMINI_MODEL` overrides the default `gemini-3.8-flash`.
-- Metadata reports temperature `0.2` and prompt version `v1`. Gemini 3.8 Flash
-  ignores custom temperature values; the request omits that parameter.
+- The request sends `temperature: 0.2` in `generationConfig` and metadata reports
+  temperature `0.2` and prompt version `v1`. Gemini 3.8 Flash ignores this
+  deprecated sampling parameter; a model selected through `GEMINI_MODEL` may
+  apply it.
 - Gemini is called only by `src/ai-client.js` using built-in `fetch`, the
   `generateContent` REST API, and the key in `x-goog-api-key`.
 - Unit tests use an injected fake client and must make no network calls.

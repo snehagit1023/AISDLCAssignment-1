@@ -4,7 +4,7 @@
 
 **Created**: 2026-11-12
 
-**Status**: Draft
+**Status**: Approved (Sneha Sharma, Product Owner, 2026-11-12)
 
 **Input**: User description: Build a command-line assistant that analyzes sprint-retrospective comments with Google Gemini and returns privacy-safe, validated themes, sentiment, and action items as JSON.
 

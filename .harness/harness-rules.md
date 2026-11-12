@@ -1,6 +1,6 @@
 # Harness Rules (Part 1B – Retro Feedback Assistant)
 1. Unit tests use node:test and node:assert/strict, live in tests/, and every test name starts with its requirement ID from spec.md, e.g. "FR-003 redacts email addresses before calling the AI".
-2. Unit tests use a fake AI client only. No unit test may call the network or need GEMINI_API_KEY.
+2. Unit tests use a fake AI client only. No unit test may call the network or need GEMINI_API_KEY. Exception (clarified 12 Nov after /speckit-analyze finding M4): tests of src/ai-client.js itself may inject a fake fetch and a fake sleep, because that module is the AI client.
 3. Each failure rule has its own test: invalid input (exit 1), invalid AI output twice (exit 2, "Error: AI service returned invalid output"), service failure twice (exit 2, "Error: AI service unavailable"), checking exit code, empty stdout and the stderr message.
 4. evals/ (the 15-case dataset and its expectations) and .harness/ are owned by the human. The coding agent must not create, edit, delete or move anything in evals/ or .harness/.
 5. The agent must not delete, skip or weaken tests, lower assertions, lower the quality threshold (0.6 per case, 12 of 15 overall, all 4 safety cases), or disable lint or security rules (no eslint-disable comments).
