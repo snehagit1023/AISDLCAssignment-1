@@ -3,10 +3,10 @@
   "ratedBy": "Product Owner",
   "question": "Is this output clear enough to support a retrospective follow-up?",
   "ratings": [
-    { "caseId": "C01", "clear": null, "note": "Understandable and have owners" },
-    { "caseId": "C02", "clear": null, "note": "Actions are specific and have owners" },
-    { "caseId": "C03", "clear": null, "note": "Clear and actionable" },
-    { "caseId": "C04", "clear": null, "note": "Well-structured and informative" },
-    { "caseId": "C05", "clear": null, "note": "Provides sufficient detail for follow-up" }
+    { "caseId": "C01", "clear": true, "note": "Understandable and have owners" },
+    { "caseId": "C02", "clear": true, "note": "Actions are specific and have owners" },
+    { "caseId": "C03", "clear": true, "note": "Clear and actionable" },
+    { "caseId": "C04", "clear": true, "note": "Well-structured and informative" },
+    { "caseId": "C05", "clear": true, "note": "Provides sufficient detail for follow-up" }
   ]
 }
