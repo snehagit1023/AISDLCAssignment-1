@@ -114,3 +114,65 @@ Requirements for the task list:
 During tasks: Copilot asked to run a read-only PowerShell check of task numbering, format and FR coverage – allowed once.
 
 Result: tasks.md with 23 tasks (Setup 2, Foundational 3, US1 8, US2 7, US3 1, Polish/Human 2). Every FR-001–FR-014 covered; tests before code; no task touches evals/ or .harness/; T023 is the human review and evaluation run. Noted: tasks do not explicitly mention sending temperature 0.2 and responseSchema (in plan) – left for analyze.
+
+## Step 6 – analyze (12 Nov)
+
+Command: /speckit-analyze
+
+IMPORTANT: The project root is C:\Users\Dell\Documents\AISDLCAssignment\Part1B. Never use the parent folder.
+
+Analyze consistency across .specify/memory/constitution.md, specs/001-retro-feedback-assistant/spec.md, plan.md, tasks.md, research.md, data-model.md and contracts/cli.md, also checking against .harness/style-guide.md and .harness/harness-rules.md.
+
+Check in particular:
+- every FR-001 to FR-014 and SC-001 to SC-005 has at least one task
+- the temperature decision in plan.md (send 0.2 in generationConfig, record it in meta, use responseSchema) is reflected in tasks
+- every test name will start with its FR ID, and traceability is verifiable
+- nothing plans changes to evals/ or .harness/
+- spec status (it is still Draft)
+
+This is read-only: do not edit any files. Give the report with severity (CRITICAL, HIGH, MEDIUM, LOW) and suggested fixes.
+
+Result run 1 (evidence/analyze-report.md): 1 CRITICAL (A1 spec still Draft), 3 HIGH (I1 cli.md still said omit temperature; C1 T004 did not name temperature/responseSchema/header tests; C2 test-name and FR-comment rules missing), 4 MEDIUM (M1 SC-005 tally, M2 max-volume test, M3 evidence review, M4 harness rule 2 unclear about fake fetch).
+
+My decisions: approved the spec as Product Owner; M4 – clarified harness rule 2 myself (ai-client tests may use fake fetch and fake sleep, still offline).
+
+Fix prompt (normal message):
+
+IMPORTANT: The project root is C:\Users\Dell\Documents\AISDLCAssignment\Part1B. Never use the parent folder.
+
+I am the Product Owner. Apply these fixes for the analyze findings. Do not touch evals/ or .harness/. Do not write application code.
+
+A1: I approve the specification. In spec.md set Status to "Approved (Sneha Sharma, Product Owner, 2026-11-12)". In tasks.md add a prerequisite note: spec, plan and tasks approved by the Product Owner on 2026-11-12 before implementation.
+I1: Update contracts/cli.md so the request sends temperature 0.2 in generationConfig (Gemini 3.8 Flash ignores it; an override model may apply it), matching plan.md and research.md.
+C1: In T004, require tests that assert the request body contains generationConfig.temperature 0.2, responseMimeType "application/json" and a responseSchema, and that the API key is only in the x-goog-api-key header, not the URL.
+C2: In the test-writing tasks, state that every test name starts with its FR ID (e.g. "FR-003 ..."); in the implementation tasks, state that every exported function has a one-line FR comment.
+M1: In T023, add: verify that the human-owned evaluator records the five Product Owner ratings and automatically reports whether at least 4 of 5 are clear (SC-005).
+M2: Add a test task (fake AI client, no network) for a successful analysis with 50 comments of 500 Unicode characters each, checking output limits and comment references (SC-004).
+M3: In T023, add a read-only review of the evaluation evidence for email addresses, phone numbers, the API key and abusive words (SC-003).
+M4: The harness owner clarified .harness/harness-rules.md rule 2: tests of src/ai-client.js may inject a fake fetch and fake sleep. No change needed to tasks beyond referencing this.
+
+Keep task IDs sequential. Then summarise what changed.
+
+Result: spec Approved, cli.md sends temperature 0.2, tasks updated – 24 tasks (new T009 max-volume test; human task is now T024).
+
+Re-run (evidence/analyze-report-rerun.md), prompt:
+
+Re-run the analysis after the fixes for findings A1, I1, C1, C2, M1, M2, M3 and M4. Check the same artifacts as before, including .harness/style-guide.md and .harness/harness-rules.md. This is read-only: do not edit any files. Report remaining issues with severity.
+
+Result run 2: 0 CRITICAL, 1 HIGH (C1 evaluation cases did not list FR IDs), 1 MEDIUM (I1 plan test wording vs fake fetch), 1 LOW (U1 max-volume test file not in plan structure). Copilot asked whether to propose edits – answered No (to review first).
+
+My fix for C1: added a "requirements" list of FR IDs to every case in evals/dataset.json (v1.1.0; comments, expectations and thresholds unchanged; before any evaluation run).
+
+Fix prompt 2 (normal message):
+
+IMPORTANT: The project root is C:\Users\Dell\Documents\AISDLCAssignment\Part1B. Never use the parent folder.
+
+Fixes for the analyze re-run findings. Do not touch evals/ or .harness/. Do not write application code.
+
+C1: The human owner has added a "requirements" list of FR IDs to every case in evals/dataset.json. In T024 add a read-only check that every evaluation case lists its FR IDs.
+I1: In plan.md Testing, add that tests of src/ai-client.js may inject a fake fetch and fake sleep (harness rule 2), still with no network and no key.
+U1: Add tests/analyze-max-volume.test.js to the test-file structure in plan.md.
+
+Then summarise what changed.
+
+Result: plan.md and tasks.md updated, 24 tasks sequential, evals/ and .harness/ untouched. No third analyze run (remaining fixes were small and verified).
