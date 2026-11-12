@@ -24,6 +24,20 @@ test('FR-006 returns one validated analysis with canonical comments and runtime 
   assert.equal(fake.calls.length, 1);
 });
 
+test('FR-006 FR-009 replaces model comments and metadata with canonical runtime values', async () => {
+  const comments = [{ id: 1, text: 'We communicated clearly' }];
+  const modelOutput = analysisFor(comments);
+  modelOutput.comments[0].text = 'The team communicated well';
+  modelOutput.meta = { model: 'provider-reported-model', temperature: 1, promptVersion: 'unknown' };
+  const fake = createFakeAiClient([modelOutput]);
+
+  const result = await analyze(comments, { aiClient: fake.analyze });
+
+  assert.deepEqual(result.comments, comments);
+  assert.deepEqual(result.meta, { model: 'gemini-3.8-flash', temperature: 0.2, promptVersion: 'v1' });
+  assert.equal(fake.calls.length, 1);
+});
+
 test('FR-008 returns clarification for irrelevant feedback and skips AI for empty input', async () => {
   const irrelevant = [{ id: 1, text: 'I like astronomy' }];
   const clarification = {

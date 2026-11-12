@@ -34,7 +34,8 @@ async function analyze(inputComments, { aiClient, model = DEFAULT_MODEL } = {}) 
   for (let attempt = 0; attempt < 2; attempt += 1) {
     let response;
     try {
-      response = await aiClient({ comments, model, prompt });
+      const modelOutput = await aiClient({ comments, model, prompt });
+      response = { ...modelOutput, comments, meta: metadata };
       validateResult(response, { comments, model });
       return response;
     } catch (error) {
