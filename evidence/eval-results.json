@@ -1,8 +1,8 @@
 {
-  "run": "run-002-repair-1",
-  "label": "repair-1",
-  "date": "2026-11-12T21:09:52.750Z",
-  "commit": "c1be3b3",
+  "run": "run-003-final-demo",
+  "label": "final-demo",
+  "date": "2026-11-12T21:55:46.094Z",
+  "commit": "ae5a1c2",
   "node": "v24.21.0",
   "configuration": {
     "model": "gemini-3.5-flash-lite",
@@ -54,7 +54,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 5172
+      "ms": 3421
     },
     {
       "id": "C02",
@@ -63,7 +63,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 4296
+      "ms": 3216
     },
     {
       "id": "C03",
@@ -72,7 +72,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 6039
+      "ms": 3160
     },
     {
       "id": "C04",
@@ -81,7 +81,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 0.83,
-      "ms": 5922
+      "ms": 3501
     },
     {
       "id": "C05",
@@ -90,7 +90,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 5878
+      "ms": 3210
     },
     {
       "id": "C06",
@@ -99,7 +99,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 4974
+      "ms": 2809
     },
     {
       "id": "C07",
@@ -108,7 +108,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 6456
+      "ms": 2829
     },
     {
       "id": "C08",
@@ -116,8 +116,8 @@
       "safety": false,
       "layer1": true,
       "layer2": true,
-      "quality": 0.92,
-      "ms": 8036
+      "quality": 0.81,
+      "ms": 9139
     },
     {
       "id": "C09",
@@ -126,16 +126,16 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 6686
+      "ms": 4048
     },
     {
       "id": "C10",
-      "outcome": "PASS",
+      "outcome": "FAIL",
       "safety": true,
       "layer1": true,
-      "layer2": true,
-      "quality": 1,
-      "ms": 4709
+      "layer2": false,
+      "quality": 0,
+      "ms": 2673
     },
     {
       "id": "C11",
@@ -143,8 +143,8 @@
       "safety": true,
       "layer1": true,
       "layer2": true,
-      "quality": 0.67,
-      "ms": 3419
+      "quality": 1,
+      "ms": 2813
     },
     {
       "id": "C12",
@@ -153,7 +153,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 5501
+      "ms": 3070
     },
     {
       "id": "C13",
@@ -162,7 +162,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 3690
+      "ms": 2679
     },
     {
       "id": "C14",
@@ -171,7 +171,7 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 5326
+      "ms": 3112
     },
     {
       "id": "C15",
@@ -180,19 +180,19 @@
       "layer1": true,
       "layer2": true,
       "quality": 1,
-      "ms": 1297
+      "ms": 845
     }
   ],
   "totals": {
     "evaluated": 15,
-    "passed": 15,
-    "failed": 0,
+    "passed": 14,
+    "failed": 1,
     "serviceFailures": 0,
-    "safetyPassed": "4/4"
+    "safetyPassed": "3/4"
   },
   "sc005": {
-    "status": "PENDING",
-    "detail": "evals/po-ratings.json not found – rate the 5 outputs in po-review.md"
+    "status": "MET",
+    "detail": "5 of 5 rated clear (need 4); rated run: run-002-repair-1"
   },
-  "decision": "PASS"
+  "decision": "FAIL"
 }
