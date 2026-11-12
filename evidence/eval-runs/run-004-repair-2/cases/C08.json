@@ -1,0 +1,471 @@
+{
+  "id": "C08",
+  "title": "Large retro with 20 comments",
+  "category": "twenty-comments",
+  "safety": false,
+  "requirements": [
+    "FR-002",
+    "FR-006",
+    "FR-007",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 8583,
+  "exitCode": 0,
+  "stderr": "",
+  "outcome": "PASS",
+  "pass": true,
+  "output": {
+    "status": "OK",
+    "comments": [
+      {
+        "id": 1,
+        "text": "Stand-up meetings regularly run over time"
+      },
+      {
+        "id": 2,
+        "text": "Sprint planning took four hours"
+      },
+      {
+        "id": 3,
+        "text": "Too many meetings leave little time to code"
+      },
+      {
+        "id": 4,
+        "text": "Retro actions from last sprint were never done"
+      },
+      {
+        "id": 5,
+        "text": "Stories were too big to finish in one sprint"
+      },
+      {
+        "id": 6,
+        "text": "Estimation was not accurate"
+      },
+      {
+        "id": 7,
+        "text": "Testing started too late"
+      },
+      {
+        "id": 8,
+        "text": "Many bugs reopened after fixing"
+      },
+      {
+        "id": 9,
+        "text": "Automated test coverage is improving"
+      },
+      {
+        "id": 10,
+        "text": "CI pipeline failed often"
+      },
+      {
+        "id": 11,
+        "text": "Staging environment was unstable"
+      },
+      {
+        "id": 12,
+        "text": "Deployment went smoothly at the end"
+      },
+      {
+        "id": 13,
+        "text": "Product Owner changed priorities mid-sprint"
+      },
+      {
+        "id": 14,
+        "text": "Acceptance criteria were missing on two stories"
+      },
+      {
+        "id": 15,
+        "text": "Backlog refinement helped a lot"
+      },
+      {
+        "id": 16,
+        "text": "Great support from the senior developers"
+      },
+      {
+        "id": 17,
+        "text": "Team morale is good"
+      },
+      {
+        "id": 18,
+        "text": "Knowledge is stuck with one person in the team"
+      },
+      {
+        "id": 19,
+        "text": "We need better onboarding for new members"
+      },
+      {
+        "id": 20,
+        "text": "Customer demo feedback was positive"
+      }
+    ],
+    "themes": [
+      {
+        "name": "Meetings & Schedule",
+        "commentIds": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Sprint Planning & Execution",
+        "commentIds": [
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "name": "Quality Assurance & Testing",
+        "commentIds": [
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "name": "Infrastructure & CI/CD",
+        "commentIds": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "name": "Requirements & Backlog",
+        "commentIds": [
+          13,
+          14,
+          15
+        ]
+      },
+      {
+        "name": "Teamwork & Onboarding",
+        "commentIds": [
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      {
+        "name": "Customer Feedback",
+        "commentIds": [
+          20
+        ]
+      }
+    ],
+    "sentiment": [
+      {
+        "commentId": 1,
+        "label": "negative"
+      },
+      {
+        "commentId": 2,
+        "label": "negative"
+      },
+      {
+        "commentId": 3,
+        "label": "negative"
+      },
+      {
+        "commentId": 4,
+        "label": "negative"
+      },
+      {
+        "commentId": 5,
+        "label": "negative"
+      },
+      {
+        "commentId": 6,
+        "label": "negative"
+      },
+      {
+        "commentId": 7,
+        "label": "negative"
+      },
+      {
+        "commentId": 8,
+        "label": "negative"
+      },
+      {
+        "commentId": 9,
+        "label": "positive"
+      },
+      {
+        "commentId": 10,
+        "label": "negative"
+      },
+      {
+        "commentId": 11,
+        "label": "negative"
+      },
+      {
+        "commentId": 12,
+        "label": "positive"
+      },
+      {
+        "commentId": 13,
+        "label": "negative"
+      },
+      {
+        "commentId": 14,
+        "label": "negative"
+      },
+      {
+        "commentId": 15,
+        "label": "positive"
+      },
+      {
+        "commentId": 16,
+        "label": "positive"
+      },
+      {
+        "commentId": 17,
+        "label": "positive"
+      },
+      {
+        "commentId": 18,
+        "label": "negative"
+      },
+      {
+        "commentId": 19,
+        "label": "negative"
+      },
+      {
+        "commentId": 20,
+        "label": "positive"
+      }
+    ],
+    "actionItems": [
+      {
+        "action": "Enforce strict timeboxing for stand-ups and review meeting cadence",
+        "owner": "SCRUM_MASTER",
+        "commentIds": [
+          1,
+          3
+        ]
+      },
+      {
+        "action": "Optimize sprint planning duration and focus on smaller story sizing",
+        "owner": "TEAM",
+        "commentIds": [
+          2,
+          5,
+          6
+        ]
+      },
+      {
+        "action": "Review follow-through process for previous retrospective actions",
+        "owner": "SCRUM_MASTER",
+        "commentIds": [
+          4
+        ]
+      },
+      {
+        "action": "Shift testing left and investigate root causes for reopened bugs",
+        "owner": "TEAM",
+        "commentIds": [
+          7,
+          8
+        ]
+      },
+      {
+        "action": "Address CI pipeline reliability and staging environment stability",
+        "owner": "TEAM",
+        "commentIds": [
+          10,
+          11
+        ]
+      },
+      {
+        "action": "Ensure clear acceptance criteria and discuss mid-sprint priority changes",
+        "owner": "PRODUCT_OWNER",
+        "commentIds": [
+          13,
+          14
+        ]
+      },
+      {
+        "action": "Create a knowledge-sharing plan and improve documentation for onboarding",
+        "owner": "TEAM",
+        "commentIds": [
+          18,
+          19
+        ]
+      }
+    ],
+    "clarification": null,
+    "meta": {
+      "model": "gemini-3.5-flash-lite",
+      "temperature": 0.2,
+      "promptVersion": "v2"
+    }
+  },
+  "layer1": {
+    "pass": true,
+    "checks": [
+      {
+        "id": "L1-exit-code",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "exit code 0"
+      },
+      {
+        "id": "L1-stderr-empty",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "stderr empty"
+      },
+      {
+        "id": "L1-single-json",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "stdout is one JSON object"
+      },
+      {
+        "id": "L1-top-level-keys",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "keys: status, comments, themes, sentiment, actionItems, clarification, meta"
+      },
+      {
+        "id": "L1-status-enum",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "status: OK"
+      },
+      {
+        "id": "L1-comments-shape",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "comments: [{ id: integer, text: string }]"
+      },
+      {
+        "id": "L1-themes-shape",
+        "requirement": "FR-006, FR-007",
+        "pass": true,
+        "detail": "themes: [{ name: 1-40 chars, commentIds: integer[] }]"
+      },
+      {
+        "id": "L1-sentiment-shape",
+        "requirement": "FR-006, FR-007",
+        "pass": true,
+        "detail": "sentiment: [{ commentId: integer, label: positive|neutral|negative }]"
+      },
+      {
+        "id": "L1-actions-shape",
+        "requirement": "FR-006, FR-007",
+        "pass": true,
+        "detail": "actionItems: [{ action: 1-120 chars, owner: TEAM|SCRUM_MASTER|PRODUCT_OWNER, commentIds: integer[] }]"
+      },
+      {
+        "id": "L1-clarification-type",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "clarification type: null"
+      },
+      {
+        "id": "L1-meta-shape",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "meta: {\"model\":\"gemini-3.5-flash-lite\",\"temperature\":0.2,\"promptVersion\":\"v2\"}"
+      },
+      {
+        "id": "L1-meta-temperature",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "temperature: 0.2"
+      }
+    ]
+  },
+  "layer2": {
+    "pass": true,
+    "checks": [
+      {
+        "id": "L2-no-api-key",
+        "requirement": "FR-005",
+        "pass": true,
+        "detail": "no API key pattern in output"
+      },
+      {
+        "id": "L2-comment-ids",
+        "requirement": "FR-001",
+        "pass": true,
+        "detail": "expected 20 comments with IDs 1..20, got 20"
+      },
+      {
+        "id": "L2-comment-text",
+        "requirement": "FR-001",
+        "pass": true,
+        "detail": "comment text equals trimmed input"
+      },
+      {
+        "id": "L2-generated-no-contact-data",
+        "requirement": "FR-003",
+        "pass": true,
+        "detail": "no email/phone in generated text"
+      },
+      {
+        "id": "L2-status",
+        "requirement": "FR-008",
+        "pass": true,
+        "detail": "expected OK, got OK"
+      },
+      {
+        "id": "L2-theme-count",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "7 themes (allowed 1-8)"
+      },
+      {
+        "id": "L2-action-count",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "7 action items (max 10)"
+      },
+      {
+        "id": "L2-references",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "all commentIds exist and are non-empty"
+      },
+      {
+        "id": "L2-one-sentiment-per-comment",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "20 sentiment entries for 20 comments"
+      },
+      {
+        "id": "L2-clarification-null",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "clarification: null"
+      },
+      {
+        "id": "L2-negative-needs-action",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "7 action items for negative feedback"
+      }
+    ]
+  },
+  "layer3": {
+    "score": 0.89,
+    "parts": {
+      "themes": {
+        "score": 1,
+        "detail": "4/4 expected themes found; got: meetings & schedule | sprint planning & execution | quality assurance & testing | infrastructure & ci/cd | requirements & backlog | teamwork & onboarding | customer feedback"
+      },
+      "sentiment": {
+        "score": 1,
+        "detail": "12/12 sentiment labels match"
+      },
+      "actions": {
+        "score": 0.67,
+        "detail": "2/3 action keyword groups found; actions: enforce strict timeboxing for stand-ups and review meeting cadence | optimize sprint planning duration and focus on smaller story sizing | review follow-through process for previous retrospective actions | shift testing left and investigate root causes for reopened bugs | address ci pipeline reliability and staging environment stability | ensure clear acceptance criteria and discuss mid-sprint priority changes | create a knowledge-sharing plan and improve documentation for onboarding"
+      }
+    }
+  }
+}
