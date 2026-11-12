@@ -94,3 +94,23 @@ Keep gemini-3.8-flash and keep sending temperature 0.2 in generationConfig, so t
 Please update plan.md (Technical Context constraints and the Phase 0/1 temperature decision, removing "omit temperature" and "as confirmed by the user") and research.md accordingly. Do not change anything else.
 
 Result: plan.md, research.md, data-model.md, quickstart.md, contracts/cli.md (5 files, +487 −84). Constitution check PASS before and after design (10/10). 7 modules in src/, 7 test files. After correction: temperature 0.2 sent and recorded, responseSchema used, no spec change.
+
+## Step 5 – tasks (12 Nov)
+
+Command: /speckit-tasks
+
+IMPORTANT: The project root is C:\Users\Dell\Documents\AISDLCAssignment\Part1B. Never use the parent folder.
+
+Create tasks.md for specs/001-retro-feedback-assistant from plan.md, spec.md, data-model.md, contracts/cli.md and quickstart.md, following .specify/memory/constitution.md and .harness/harness-rules.md.
+
+Requirements for the task list:
+- Write tests before the code they test (test-first), using node:test and a fake AI client; no task may need the network or GEMINI_API_KEY to pass unit tests.
+- Every FR-001 to FR-014 must be covered by at least one task, and each task must name the FR IDs it covers.
+- Include a task to add package.json scripts test, lint and security, with eslint and eslint-plugin-security as devDependencies only.
+- Include a final task: human review of src/ (search for console.log of the key, the key in URLs, eval, and network calls outside ai-client.js) and running the human-owned evaluation harness. This task is done by the human, not the agent.
+- No task may create, edit or delete anything in evals/ or .harness/.
+- Do not write any application code yet.
+
+During tasks: Copilot asked to run a read-only PowerShell check of task numbering, format and FR coverage – allowed once.
+
+Result: tasks.md with 23 tasks (Setup 2, Foundational 3, US1 8, US2 7, US3 1, Polish/Human 2). Every FR-001–FR-014 covered; tests before code; no task touches evals/ or .harness/; T023 is the human review and evaluation run. Noted: tasks do not explicitly mention sending temperature 0.2 and responseSchema (in plan) – left for analyze.

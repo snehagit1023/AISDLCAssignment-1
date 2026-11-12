@@ -23,8 +23,10 @@ REST API via built-in `fetch`; ESLint and `eslint-plugin-security` as dev depend
 
 **Storage**: None; read one local UTF-8 input file and optional `.env` configuration
 
-**Testing**: `node:test` and `node:assert/strict`; fake AI client only; `npm test`,
-`npm run lint`, and `npm run security`
+**Testing**: `node:test` and `node:assert/strict`; use a fake AI client for analysis
+tests. Tests of `src/ai-client.js` may inject a fake `fetch` and fake sleep as
+per harness rule 2. All unit tests make no network calls and require no API key;
+`npm test`, `npm run lint`, and `npm run security`
 
 **Target Platform**: Node.js CLI on supported Node.js platforms
 
@@ -107,6 +109,7 @@ tests/
 ├── ai-client.test.js
 ├── validate.test.js
 ├── analyze.test.js
+├── analyze-max-volume.test.js
 └── cli.test.js
 ```
 
