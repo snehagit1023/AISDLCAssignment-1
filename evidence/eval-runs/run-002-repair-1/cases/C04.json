@@ -1,0 +1,276 @@
+{
+  "id": "C04",
+  "title": "Remote collaboration",
+  "category": "normal",
+  "safety": false,
+  "requirements": [
+    "FR-001",
+    "FR-006",
+    "FR-007",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 5922,
+  "exitCode": 0,
+  "stderr": "",
+  "outcome": "PASS",
+  "pass": true,
+  "output": {
+    "status": "OK",
+    "comments": [
+      {
+        "id": 1,
+        "text": "Working across time zones made handovers difficult"
+      },
+      {
+        "id": 2,
+        "text": "Video calls kept dropping during sprint planning"
+      },
+      {
+        "id": 3,
+        "text": "The team chat channel helped us solve blockers quickly"
+      },
+      {
+        "id": 4,
+        "text": "Some people never turn on their camera and stay silent in meetings"
+      },
+      {
+        "id": 5,
+        "text": "Shared documentation in the wiki was very helpful"
+      }
+    ],
+    "themes": [
+      {
+        "name": "Collaboration and Communication",
+        "commentIds": [
+          1,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Tools and Infrastructure",
+        "commentIds": [
+          2,
+          5
+        ]
+      }
+    ],
+    "sentiment": [
+      {
+        "commentId": 1,
+        "label": "negative"
+      },
+      {
+        "commentId": 2,
+        "label": "negative"
+      },
+      {
+        "commentId": 3,
+        "label": "positive"
+      },
+      {
+        "commentId": 4,
+        "label": "neutral"
+      },
+      {
+        "commentId": 5,
+        "label": "positive"
+      }
+    ],
+    "actionItems": [
+      {
+        "action": "Establish clear handover protocols and overlap hours for distributed team members.",
+        "owner": "TEAM",
+        "commentIds": [
+          1
+        ]
+      },
+      {
+        "action": "Review and test video conferencing stability before upcoming planning sessions.",
+        "owner": "SCRUM_MASTER",
+        "commentIds": [
+          2
+        ]
+      },
+      {
+        "action": "Encourage active participation and inclusive communication guidelines during virtual meetings.",
+        "owner": "TEAM",
+        "commentIds": [
+          4
+        ]
+      }
+    ],
+    "clarification": null,
+    "meta": {
+      "model": "gemini-3.5-flash-lite",
+      "temperature": 0.2,
+      "promptVersion": "v1"
+    }
+  },
+  "layer1": {
+    "pass": true,
+    "checks": [
+      {
+        "id": "L1-exit-code",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "exit code 0"
+      },
+      {
+        "id": "L1-stderr-empty",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "stderr empty"
+      },
+      {
+        "id": "L1-single-json",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "stdout is one JSON object"
+      },
+      {
+        "id": "L1-top-level-keys",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "keys: status, comments, themes, sentiment, actionItems, clarification, meta"
+      },
+      {
+        "id": "L1-status-enum",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "status: OK"
+      },
+      {
+        "id": "L1-comments-shape",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "comments: [{ id: integer, text: string }]"
+      },
+      {
+        "id": "L1-themes-shape",
+        "requirement": "FR-006, FR-007",
+        "pass": true,
+        "detail": "themes: [{ name: 1-40 chars, commentIds: integer[] }]"
+      },
+      {
+        "id": "L1-sentiment-shape",
+        "requirement": "FR-006, FR-007",
+        "pass": true,
+        "detail": "sentiment: [{ commentId: integer, label: positive|neutral|negative }]"
+      },
+      {
+        "id": "L1-actions-shape",
+        "requirement": "FR-006, FR-007",
+        "pass": true,
+        "detail": "actionItems: [{ action: 1-120 chars, owner: TEAM|SCRUM_MASTER|PRODUCT_OWNER, commentIds: integer[] }]"
+      },
+      {
+        "id": "L1-clarification-type",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "clarification type: null"
+      },
+      {
+        "id": "L1-meta-shape",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "meta: {\"model\":\"gemini-3.5-flash-lite\",\"temperature\":0.2,\"promptVersion\":\"v1\"}"
+      },
+      {
+        "id": "L1-meta-temperature",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "temperature: 0.2"
+      }
+    ]
+  },
+  "layer2": {
+    "pass": true,
+    "checks": [
+      {
+        "id": "L2-no-api-key",
+        "requirement": "FR-005",
+        "pass": true,
+        "detail": "no API key pattern in output"
+      },
+      {
+        "id": "L2-comment-ids",
+        "requirement": "FR-001",
+        "pass": true,
+        "detail": "expected 5 comments with IDs 1..5, got 5"
+      },
+      {
+        "id": "L2-comment-text",
+        "requirement": "FR-001",
+        "pass": true,
+        "detail": "comment text equals trimmed input"
+      },
+      {
+        "id": "L2-generated-no-contact-data",
+        "requirement": "FR-003",
+        "pass": true,
+        "detail": "no email/phone in generated text"
+      },
+      {
+        "id": "L2-status",
+        "requirement": "FR-008",
+        "pass": true,
+        "detail": "expected OK, got OK"
+      },
+      {
+        "id": "L2-theme-count",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "2 themes (allowed 1-8)"
+      },
+      {
+        "id": "L2-action-count",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "3 action items (max 10)"
+      },
+      {
+        "id": "L2-references",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "all commentIds exist and are non-empty"
+      },
+      {
+        "id": "L2-one-sentiment-per-comment",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "5 sentiment entries for 5 comments"
+      },
+      {
+        "id": "L2-clarification-null",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "clarification: null"
+      },
+      {
+        "id": "L2-negative-needs-action",
+        "requirement": "FR-007",
+        "pass": true,
+        "detail": "3 action items for negative feedback"
+      }
+    ]
+  },
+  "layer3": {
+    "score": 0.83,
+    "parts": {
+      "themes": {
+        "score": 0.5,
+        "detail": "1/2 expected themes found; missing: Documentation; got: collaboration and communication | tools and infrastructure"
+      },
+      "sentiment": {
+        "score": 1,
+        "detail": "4/4 sentiment labels match"
+      },
+      "actions": {
+        "score": 1,
+        "detail": "1/1 action keyword groups found; actions: establish clear handover protocols and overlap hours for distributed team members. | review and test video conferencing stability before upcoming planning sessions. | encourage active participation and inclusive communication guidelines during virtual meetings."
+      }
+    }
+  }
+}

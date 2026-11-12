@@ -3,3 +3,4 @@
 | Run | Date | Commit | Model | Gates | Passed | Failed | Service failures | Safety | SC-005 | Decision |
 |---|---|---|---|---|---|---|---|---|---|---|
 | run-001-initial | 2026-11-12 20:17 | 49c681b | gemini-3.8-flash | PASS | 1/15 | 1 | 13 | 1/4 | PENDING | INCONCLUSIVE |
+| run-002-repair-1 | 2026-11-12 21:09 | c1be3b3 | gemini-3.5-flash-lite | PASS | 15/15 | 0 | 0 | 4/4 | PENDING | PASS |

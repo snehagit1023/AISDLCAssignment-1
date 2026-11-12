@@ -1,0 +1,45 @@
+unit-tests: PASS
+Requirement: FR-011, Constitution V
+Expected: all unit tests pass (fake AI client, no network)
+Observed:
+exit 0
+✔ FR-006 returns one validated analysis with canonical comments and runtime metadata (3.9609ms)
+✔ FR-006 FR-009 replaces model comments and metadata with canonical runtime values (1.8122ms)
+✔ FR-008 returns clarification for irrelevant feedback and skips AI for empty input (0.5384ms)
+✔ FR-009 retries invalid model output exactly once before returning valid output (0.3906ms)
+✔ FR-004 keeps hostile comment text untrusted and generated fields professional (0.8175ms)
+✔ FR-001 prints exactly one JSON result on the analyze success path (18.6425ms)
+▶ FR-002 rejects missing files, excess comments, and overlong comments as invalid input
+  ✔ FR-002 rejects missing.txt (1.1105ms)
+  ✔ FR-002 rejects many.txt (1.7265ms)
+  ✔ FR-002 rejects long.txt (1.3362ms)
+  ✔ FR-002 rejects unreadable (1.3215ms)
+✔ FR-002 rejects missing files, excess comments, and overlong comments as invalid input (17.6998ms)
+✔ FR-005 requires a key only for nonempty input (9.5992ms)
+✔ FR-009 and FR-010 report exhausted AI failures with exit code 2 and no stdout (7.1363ms)
+✔ FR-005 loads .env without overriding process configuration and keeps the key private (11.1437ms)
+✔ FR-001 parses UTF-8 lines, trims text, removes blanks, and assigns ordered IDs (1.9246ms)
+✔ FR-001 reads UTF-8 input files (15.3421ms)
+✔ FR-002 accepts empty input and enforces the 1–50 nonblank comment bound (1.1757ms)
+✔ FR-002 measures the 500-character limit in Unicode code points (0.3601ms)
+✔ FR-002 reports a missing input file (5.1924ms)
+✔ FR-002 reports an unreadable directory as invalid input (3.3078ms)
+✔ FR-004 frames comments as untrusted data rather than instructions (1.5142ms)
+✔ FR-004 builds a prompt for an empty comment list (0.6557ms)
+✔ FR-003 redacts email addresses and supported 7–15 digit phone formats (1.331ms)
+✔ FR-003 sends and returns only redacted canonical comments (1.9185ms)
+✔ FR-006 validates the exact result shape and runtime metadata (2.9309ms)
+✔ FR-007 rejects invalid theme lengths, counts, and references (0.5739ms)
+✔ FR-007 requires one valid sentiment per input comment and an action for negative feedback (0.463ms)
+✔ FR-007 rejects malformed action items and more than ten actions (0.5273ms)
+✔ FR-008 requires clarification results to contain a question and empty analysis arrays (0.29ms)
+✔ FR-004 rejects generated contact data, echoed injection directives, and abusive action text (0.2898ms)
+✔ FR-006 rejects model comments or metadata that differ from canonical runtime values (0.2038ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10617.6989
