@@ -1,0 +1,44 @@
+{
+  "id": "C01",
+  "title": "Daily stand-up and deployment",
+  "category": "normal",
+  "safety": false,
+  "requirements": [
+    "FR-001",
+    "FR-006",
+    "FR-007",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 21463,
+  "exitCode": 2,
+  "stderr": "Error: AI service returned invalid output",
+  "outcome": "FAIL",
+  "pass": false,
+  "stdout": "",
+  "layer1": {
+    "pass": false,
+    "checks": [
+      {
+        "id": "L1-exit-code",
+        "requirement": "FR-006",
+        "pass": false,
+        "detail": "exit code 2"
+      },
+      {
+        "id": "L1-stderr-empty",
+        "requirement": "FR-006",
+        "pass": false,
+        "detail": "stderr: Error: AI service returned invalid output"
+      },
+      {
+        "id": "L1-single-json",
+        "requirement": "FR-006",
+        "pass": false,
+        "detail": "stdout is not exactly one JSON object: 0 non-empty stdout lines"
+      }
+    ]
+  },
+  "layer2": null,
+  "layer3": null
+}

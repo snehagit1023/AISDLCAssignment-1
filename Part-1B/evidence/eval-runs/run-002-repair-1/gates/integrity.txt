@@ -1,0 +1,5 @@
+integrity: PASS
+Requirement: Constitution X, harness-rules.md rule 4, FR-012
+Expected: .harness/ and evals/ committed and unchanged
+Observed:
+no uncommitted changes; tracked: true

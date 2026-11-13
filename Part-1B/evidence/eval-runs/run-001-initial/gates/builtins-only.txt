@@ -1,0 +1,5 @@
+builtins-only: PASS
+Requirement: FR-011, style-guide rules 2 and 4
+Expected: no runtime dependencies; src/ requires only node: built-ins or local files; only ai-client.js calls fetch
+Observed:
+no runtime dependencies; only built-in and local modules; fetch only in ai-client.js

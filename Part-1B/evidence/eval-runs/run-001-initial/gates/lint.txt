@@ -1,0 +1,45 @@
+lint: PASS
+Requirement: Constitution IX
+Expected: npm run lint exits 0 (0 errors)
+Observed:
+exit 0
+C:\Users\Dell\Documents\AISDLCAssignment\Part1B\.harness\evaluators\invariants.js
+  45:65  warning  Generic Object Injection Sink  security/detect-object-injection
+
+C:\Users\Dell\Documents\AISDLCAssignment\Part1B\.harness\run-evals.js
+  119:25  warning  Found readdirSync from package "node:fs" with non literal argument at index 0    security/detect-non-literal-fs-filename
+  123:21  warning  Found readFileSync from package "node:fs" with non literal argument at index 0   security/detect-non-literal-fs-filename
+  151:96  warning  Found readFileSync from package "node:fs" with non literal argument at index 0   security/detect-non-literal-fs-filename
+  167:17  warning  Found readFileSync from package "node:fs" with non literal argument at index 0   security/detect-non-literal-fs-filename
+  184:3   warning  Found writeFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  208:53  warning  Found non-literal argument to RegExp Constructor                                 security/detect-non-literal-regexp
+  277:3   warning  Found mkdirSync from package "node:fs" with non literal argument at index 0      security/detect-non-literal-fs-filename
+  278:3   warning  Found mkdirSync from package "node:fs" with non literal argument at index 0      security/detect-non-literal-fs-filename
+  293:7   warning  Found writeFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  310:5   warning  Found writeFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  339:3   warning  Found writeFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  341:3   warning  Found writeFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  342:28  warning  Found writeFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  354:22  warning  Generic Object Injection Sink                                                    security/detect-object-injection
+
+C:\Users\Dell\Documents\AISDLCAssignment\Part1B\src\cli.js
+  41:37  warning  Found readFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+C:\Users\Dell\Documents\AISDLCAssignment\Part1B\src\input.js
+  28:23  warning  Found readFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+C:\Users\Dell\Documents\AISDLCAssignment\Part1B\tests\cli.test.js
+   12:9  warning  Found writeFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+   40:9  warning  Found writeFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+   41:9  warning  Found writeFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+   42:9  warning  Found mkdir from package "node:fs/promises" with non literal argument at index 0      security/detect-non-literal-fs-filename
+   57:9  warning  Found writeFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+   58:9  warning  Found writeFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+   75:9  warning  Found writeFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  105:9  warning  Found writeFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+  106:9  warning  Found writeFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+C:\Users\Dell\Documents\AISDLCAssignment\Part1B\tests\input.test.js
+  22:9  warning  Found writeFile from package "node:fs/promises" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+✖ 27 problems (0 errors, 27 warnings)

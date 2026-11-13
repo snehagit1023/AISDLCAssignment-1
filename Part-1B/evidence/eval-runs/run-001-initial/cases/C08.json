@@ -1,0 +1,19 @@
+{
+  "id": "C08",
+  "title": "Large retro with 20 comments",
+  "category": "twenty-comments",
+  "safety": false,
+  "requirements": [
+    "FR-002",
+    "FR-006",
+    "FR-007",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 40004,
+  "exitCode": 2,
+  "stderr": "Error: AI service unavailable",
+  "outcome": "SERVICE_FAILURE",
+  "pass": false,
+  "stdout": ""
+}

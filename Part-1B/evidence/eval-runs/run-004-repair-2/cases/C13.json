@@ -1,0 +1,179 @@
+{
+  "id": "C13",
+  "title": "Unrelated and gibberish text",
+  "category": "unrelated-gibberish",
+  "safety": false,
+  "requirements": [
+    "FR-008",
+    "FR-012",
+    "FR-013"
+  ],
+  "ms": 2528,
+  "exitCode": 0,
+  "stderr": "",
+  "outcome": "PASS",
+  "pass": true,
+  "output": {
+    "status": "NEEDS_CLARIFICATION",
+    "comments": [
+      {
+        "id": 1,
+        "text": "asdfgh qwerty zxcvb"
+      },
+      {
+        "id": 2,
+        "text": "What is the weather in Mumbai tomorrow?"
+      },
+      {
+        "id": 3,
+        "text": "My favourite cricket team won yesterday"
+      },
+      {
+        "id": 4,
+        "text": "lorem ipsum dolor sit amet"
+      }
+    ],
+    "themes": [],
+    "sentiment": [],
+    "actionItems": [],
+    "clarification": "None of the provided comments concern the team, the sprint, or ways of working. Could you please provide relevant retrospective feedback?",
+    "meta": {
+      "model": "gemini-3.5-flash-lite",
+      "temperature": 0.2,
+      "promptVersion": "v2"
+    }
+  },
+  "layer1": {
+    "pass": true,
+    "checks": [
+      {
+        "id": "L1-exit-code",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "exit code 0"
+      },
+      {
+        "id": "L1-stderr-empty",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "stderr empty"
+      },
+      {
+        "id": "L1-single-json",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "stdout is one JSON object"
+      },
+      {
+        "id": "L1-top-level-keys",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "keys: status, comments, themes, sentiment, actionItems, clarification, meta"
+      },
+      {
+        "id": "L1-status-enum",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "status: NEEDS_CLARIFICATION"
+      },
+      {
+        "id": "L1-comments-shape",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "comments: [{ id: integer, text: string }]"
+      },
+      {
+        "id": "L1-themes-shape",
+        "requirement": "FR-006, FR-007",
+        "pass": true,
+        "detail": "themes: [{ name: 1-40 chars, commentIds: integer[] }]"
+      },
+      {
+        "id": "L1-sentiment-shape",
+        "requirement": "FR-006, FR-007",
+        "pass": true,
+        "detail": "sentiment: [{ commentId: integer, label: positive|neutral|negative }]"
+      },
+      {
+        "id": "L1-actions-shape",
+        "requirement": "FR-006, FR-007",
+        "pass": true,
+        "detail": "actionItems: [{ action: 1-120 chars, owner: TEAM|SCRUM_MASTER|PRODUCT_OWNER, commentIds: integer[] }]"
+      },
+      {
+        "id": "L1-clarification-type",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "clarification type: string"
+      },
+      {
+        "id": "L1-meta-shape",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "meta: {\"model\":\"gemini-3.5-flash-lite\",\"temperature\":0.2,\"promptVersion\":\"v2\"}"
+      },
+      {
+        "id": "L1-meta-temperature",
+        "requirement": "FR-006",
+        "pass": true,
+        "detail": "temperature: 0.2"
+      }
+    ]
+  },
+  "layer2": {
+    "pass": true,
+    "checks": [
+      {
+        "id": "L2-no-api-key",
+        "requirement": "FR-005",
+        "pass": true,
+        "detail": "no API key pattern in output"
+      },
+      {
+        "id": "L2-comment-ids",
+        "requirement": "FR-001",
+        "pass": true,
+        "detail": "expected 4 comments with IDs 1..4, got 4"
+      },
+      {
+        "id": "L2-comment-text",
+        "requirement": "FR-001",
+        "pass": true,
+        "detail": "comment text equals trimmed input"
+      },
+      {
+        "id": "L2-generated-no-contact-data",
+        "requirement": "FR-003",
+        "pass": true,
+        "detail": "no email/phone in generated text"
+      },
+      {
+        "id": "L2-status",
+        "requirement": "FR-008",
+        "pass": true,
+        "detail": "expected NEEDS_CLARIFICATION, got NEEDS_CLARIFICATION"
+      },
+      {
+        "id": "L2-clarification-empty-arrays",
+        "requirement": "FR-008",
+        "pass": true,
+        "detail": "themes, sentiment and actionItems are empty"
+      },
+      {
+        "id": "L2-clarification-question",
+        "requirement": "FR-008",
+        "pass": true,
+        "detail": "clarification: \"None of the provided comments concern the team, the sprint, or ways of working. Could you please provide relevant retrospective feedback?\""
+      }
+    ]
+  },
+  "layer3": {
+    "score": 1,
+    "parts": {
+      "clarification": {
+        "score": 1,
+        "detail": "clarification question returned"
+      }
+    }
+  }
+}
