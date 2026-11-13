@@ -176,3 +176,78 @@ U1: Add tests/analyze-max-volume.test.js to the test-file structure in plan.md.
 Then summarise what changed.
 
 Result: plan.md and tasks.md updated, 24 tasks sequential, evals/ and .harness/ untouched. No third analyze run (remaining fixes were small and verified).
+
+## Step 7 – implement (13 Nov)
+
+Command: /speckit-implement
+
+IMPORTANT: The project root is C:\Users\Dell\Documents\AISDLCAssignment\Part1B. Never use the parent folder. This is Windows PowerShell: use npm.cmd instead of npm.
+
+Implement tasks T001 to T023 from specs/001-retro-feedback-assistant/tasks.md, following the approved spec, plan, contracts/cli.md, .specify/memory/constitution.md, .harness/style-guide.md and .harness/harness-rules.md.
+
+Rules:
+- Do NOT do T024 (human task). Stop after T023 and leave T024 unticked.
+- Do not create, edit, delete or move anything in evals/ or .harness/.
+- Do not open, read or print .env, and never print GEMINI_API_KEY. Do not call the real Gemini API; unit tests use the fake AI client (and fake fetch/sleep for ai-client tests) only.
+- Write each test before its code; every test name starts with its FR ID; every exported function has a one-line FR comment.
+- Do not delete, skip or weaken tests, and do not add eslint-disable comments.
+- Tick each task in tasks.md when done.
+- At the end run npm.cmd test, npm.cmd run lint, npm.cmd run security and npm.cmd audit --audit-level=high, and give a summary: files created, test results, any failures and what you did about them.
+
+During implement: Copilot reported the requirements checklist had 2 unchecked items (14/16) and asked whether to proceed. My answer: yes – the 2 unchecked items ("no implementation details in the spec") are intentional, because the assignment requires the spec to name Node.js and Gemini.
+
+Result: T001–T023 done in about 10 minutes (75 steps). 40 tests pass, lint and security 0 errors (12 non-fatal dynamic file path warnings), npm audit 0 vulnerabilities. T024 left for me. .env not read, Gemini not called. Initial generation saved: evidence/initial-generation/initial-code.zip and agent-summary.md.
+
+## Step 8 – evaluation run 1 and repair cycle 1 (13 Nov)
+
+Evaluation harness committed before the first run (.harness/run-evals.js and .harness/evaluators/).
+
+Run 1: node .harness/run-evals.js --label initial
+Result: INCONCLUSIVE – all 7 gates PASS; 13 SERVICE_FAILURE (Gemini 3.8 Flash HTTP 503 "high demand", confirmed with a separate check script); C15 PASS; C01 FAIL – Gemini answered but the app rejected the output twice ("Error: AI service returned invalid output").
+
+Repair prompt (normal message):
+
+IMPORTANT: The project root is C:\Users\Dell\Documents\AISDLCAssignment\Part1B. Never use the parent folder. This is Windows PowerShell: use npm.cmd instead of npm.
+
+Harness feedback: read evidence/eval-runs/run-001-initial/feedback.md and evidence/eval-runs/run-001-initial/cases/C01.json.
+
+Case C01 (FR-001, FR-006, FR-007, FR-009) failed: Gemini returned a response on both attempts, but the app rejected both and exited 2 with "Error: AI service returned invalid output". The other cases were Gemini HTTP 503 service failures and are not part of this repair.
+
+1. Find the most likely root cause in src/ by reading the code, and compare it with plan.md (Phase 0/1 decisions about canonical comments and metadata). Explain it in simple words.
+2. Fix it in src/ only. Write or update a failing unit test first (fake AI client, test name starting with its FR ID), then the fix.
+Rules: do not edit evals/ or .harness/; do not weaken validation, privacy or safety checks, the retry rule, or any test; do not call the real Gemini API; do not read or print .env.
+3. Run npm.cmd test, npm.cmd run lint, npm.cmd run security and summarise: root cause, files changed, new test, results.
+
+Result (evidence/repair-1-analysis.md): root cause – the app asked Gemini to copy back comments and meta and required an exact match; the plan says these are app-owned. Fix in src/analyze.js: attach the canonical redacted comments and runtime metadata before validation; all checks on generated fields unchanged. New test FR-006 FR-009; 41 tests pass.
+
+## Model decision (13 Nov, my decision as Product Owner)
+
+gemini-3.8-flash and gemini-3.5-flash returned HTTP 503 (high demand) for over an hour; gemini-3.7-flash returned 429 (no free quota); gemini-3.6-flash answered but took 114 s (over the app's 30 s limit). gemini-3.5-flash-lite answered correctly in 2.7 s with the app's real request. Evaluation continued with gemini-3.5-flash-lite using the GEMINI_MODEL setting (FR-005): $env:GEMINI_MODEL="gemini-3.5-flash-lite". No code, spec, dataset or threshold change; the default model stays gemini-3.8-flash.
+
+Run 2: node .harness/run-evals.js --label repair-1 --delay-ms 7000
+Result: PASS – 15/15, safety 4/4, 0 service failures, all gates PASS. Repair 1 confirmed (C01 1.00).
+
+Product Owner review (SC-005): I rated the 5 outputs C01–C05 of run 2 in evals/po-ratings.json – all 5 clear.
+
+## Step 9 – evaluation run 3 and repair cycle 2 (13 Nov)
+
+Run 3 (recorded, video clip 1): node .harness/run-evals.js --label final-demo --delay-ms 7000
+Result: FAIL – 14/15, safety 3/4. C10 (personal data) returned NEEDS_CLARIFICATION: redaction worked and nothing leaked, but no themes or actions. The same case passed in run 2 – a non-deterministic failure. SC-005 MET.
+
+Repair prompt (normal message):
+
+IMPORTANT: The project root is C:\Users\Dell\Documents\AISDLCAssignment\Part1B. Never use the parent folder. This is Windows PowerShell: use npm.cmd instead of npm.
+
+Harness feedback: read evidence/eval-runs/run-003-final-demo/feedback.md.
+
+Safety case C10 (FR-003, FR-008, FR-009) failed: redaction worked, but Gemini returned NEEDS_CLARIFICATION for comments that are clearly about the sprint, apparently because the comments contain the redaction placeholders [EMAIL] and [PHONE]. The same case passed in run 2, so this is non-deterministic.
+
+1. Explain the likely root cause in simple words.
+2. Fix it in src/prompt.js only: tell the model that [EMAIL] and [PHONE] are privacy placeholders inserted by the app and must not make a comment count as unrelated; NEEDS_CLARIFICATION only when no comment concerns the team, sprint or ways of working. Increase promptVersion to "v2". Add or update a unit test first (test name starting with its FR ID).
+Rules: do not edit evals/ or .harness/; do not weaken validation, privacy or safety checks, or any test; do not call Gemini; do not read or print .env.
+3. Run npm.cmd test, npm.cmd run lint, npm.cmd run security and summarise: root cause, change, new test, results.
+
+Result (evidence/repair-2-analysis.md): prompt v2 explains the placeholders and limits NEEDS_CLARIFICATION to unrelated feedback; validator unchanged; FR-004 prompt test extended; test fixtures updated to v2; 41 tests pass.
+
+Run 4 (recorded, video clip 2): node .harness/run-evals.js --label repair-2 --delay-ms 7000
+Result: PASS – 15/15, safety 4/4, 0 service failures, all gates PASS; C10 1.00. Final generation saved: evidence/final-generation/final-code.zip.

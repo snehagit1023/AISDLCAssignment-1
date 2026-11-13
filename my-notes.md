@@ -7,3 +7,4 @@
 12 Nov – Plan done: 5 files (plan, research, data-model, quickstart, contracts/cli.md). Correction worked: temperature 0.2 is sent and recorded, responseSchema added, no spec change. Constitution check PASS 10/10.
 12 Nov – Analyze fixes 2: Copilot updated plan.md (fake fetch allowed for ai-client tests, max-volume test file) and T024 (check eval cases list FR IDs). 24 tasks, 0 CRITICAL. Ready to implement.
 13 Nov – Implement: Copilot did T001–T023 in about 10 minutes (75 steps, 6.4 credits). 40 tests pass, lint/security 0 errors, audit 0 vulnerabilities, 12 non-fatal ESLint warnings (dynamic file path). T024 left for me. Did not read .env or call Gemini. Initial generation saved.
+13 Nov 04:00 – Eval run 4 (repair-2): PASS 15/15, safety 4/4, all gates; C10 now 1.00. Final generation saved. Clip 2 recorded.
