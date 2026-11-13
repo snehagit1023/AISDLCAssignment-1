@@ -1,0 +1,164 @@
+Gate: unit-tests
+Result: PASS
+Command: C:\Program Files\nodejs\node.exe --test --test-reporter=tap tests/**/*.test.js
+Exit code: 0
+Duration: 50919 ms
+
+--- stdout ---
+TAP version 13
+# Subtest: FR-002 accepts the sprint shape, uses oldest-first history, and applies member defaults
+ok 1 - FR-002 accepts the sprint shape, uses oldest-first history, and applies member defaults
+  ---
+  duration_ms: 1.3739
+  type: 'test'
+  ...
+# Subtest: FR-003 sums full capacity and rounds an exact half-tenth up
+ok 2 - FR-003 sums full capacity and rounds an exact half-tenth up
+  ---
+  duration_ms: 0.1964
+  type: 'test'
+  ...
+# Subtest: FR-004 sums available capacity and rounds an exact half-tenth up
+ok 3 - FR-004 sums available capacity and rounds an exact half-tenth up
+  ---
+  duration_ms: 0.1376
+  type: 'test'
+  ...
+# Subtest: FR-005 averages one and two values, selects the newest three, and rounds display to one decimal
+ok 4 - FR-005 averages one and two values, selects the newest three, and rounds display to one decimal
+  ---
+  duration_ms: 1.0088
+  type: 'test'
+  ...
+# Subtest: FR-006 floors forecast from the unrounded mean of selected history
+ok 5 - FR-006 floors forecast from the unrounded mean of selected history
+  ---
+  duration_ms: 0.226
+  type: 'test'
+  ...
+# Subtest: FR-007 selects each verdict and difference at boundaries, including zero forecast
+ok 6 - FR-007 selects each verdict and difference at boundaries, including zero forecast
+  ---
+  duration_ms: 0.8726
+  type: 'test'
+  ...
+# Subtest: FR-008 returns successful capacity with null history values when history is empty
+ok 7 - FR-008 returns successful capacity with null history values when history is empty
+  ---
+  duration_ms: 0.1295
+  type: 'test'
+  ...
+# Subtest: FR-001 accepts readable and JSON report command forms
+ok 8 - FR-001 accepts readable and JSON report command forms
+  ---
+  duration_ms: 1829.0528
+  type: 'test'
+  ...
+# Subtest: FR-008 reports no history with capacities, N/A text, and null JSON values
+ok 9 - FR-008 reports no history with capacities, N/A text, and null JSON values
+  ---
+  duration_ms: 1730.2181
+  type: 'test'
+  ...
+# Subtest: FR-009 renders exactly six lines with fixed labels, order, precision, and verdict wording
+ok 10 - FR-009 renders exactly six lines with fixed labels, order, precision, and verdict wording
+  ---
+  duration_ms: 896.5163
+  type: 'test'
+  ...
+# Subtest: NFR-003 completes a 50-member report in under 1000 ms after fixture creation
+ok 11 - NFR-003 completes a 50-member report in under 1000 ms after fixture creation
+  ---
+  duration_ms: 881.8526
+  type: 'test'
+  ...
+# Subtest: FR-010 emits the seven JSON fields in contract order with specified values and nulls
+ok 12 - FR-010 emits the seven JSON fields in contract order with specified values and nulls
+  ---
+  duration_ms: 1629.4222
+  type: 'test'
+  ...
+# Subtest: FR-018 repeats byte-for-byte identical output for identical input and mode
+ok 13 - FR-018 repeats byte-for-byte identical output for identical input and mode
+  ---
+  duration_ms: 3272.7919
+  type: 'test'
+  ...
+# Subtest: FR-011 rejects out-of-range, fractional, missing, and wrongly typed sprint lengths
+ok 14 - FR-011 rejects out-of-range, fractional, missing, and wrongly typed sprint lengths
+  ---
+  duration_ms: 6103.2503
+  type: 'test'
+  ...
+# Subtest: FR-012 rejects empty teams, invalid names, and trimmed case-insensitive duplicates
+ok 15 - FR-012 rejects empty teams, invalid names, and trimmed case-insensitive duplicates
+  ---
+  duration_ms: 3535.987
+  type: 'test'
+  ...
+# Subtest: FR-013 rejects invalid leave and accepts inclusive boundaries, fractions, and defaults
+ok 16 - FR-013 rejects invalid leave and accepts inclusive boundaries, fractions, and defaults
+  ---
+  duration_ms: 6087.508
+  type: 'test'
+  ...
+# Subtest: FR-014 rejects invalid allocations and accepts inclusive boundaries and defaults
+ok 17 - FR-014 rejects invalid allocations and accepts inclusive boundaries and defaults
+  ---
+  duration_ms: 5453.0237
+  type: 'test'
+  ...
+# Subtest: FR-015 rejects invalid totals, missing fields, wrong types, and malformed input shapes
+ok 18 - FR-015 rejects invalid totals, missing fields, wrong types, and malformed input shapes
+  ---
+  duration_ms: 9789.5122
+  type: 'test'
+  ...
+# Subtest: FR-016 rejects missing files and malformed JSON with the exact contract messages
+ok 19 - FR-016 rejects missing files and malformed JSON with the exact contract messages
+  ---
+  duration_ms: 1687.6613
+  type: 'test'
+  ...
+# Subtest: FR-017 rejects invalid arguments, unreadable paths, and invalid data without stack traces
+ok 20 - FR-017 rejects invalid arguments, unreadable paths, and invalid data without stack traces
+  ---
+  duration_ms: 5268.2302
+  type: 'test'
+  ...
+# Subtest: NFR-001 supports Node.js 20+, CommonJS, built-in runtime dependencies, and a CLI-only entry point
+ok 21 - NFR-001 supports Node.js 20+, CommonJS, built-in runtime dependencies, and a CLI-only entry point
+  ---
+  duration_ms: 1.8635
+  type: 'test'
+  ...
+# Subtest: NFR-002 keeps source offline and non-executable while exposing the security gate
+ok 22 - NFR-002 keeps source offline and non-executable while exposing the security gate
+  ---
+  duration_ms: 0.9901
+  type: 'test'
+  ...
+# Subtest: NFR-004 provides ID-prefixed tests for every requirement and failure tests for validation rules
+ok 23 - NFR-004 provides ID-prefixed tests for every requirement and failure tests for validation rules
+  ---
+  duration_ms: 1.6031
+  type: 'test'
+  ...
+# Subtest: NFR-005 places implementation comments for every functional requirement in source modules
+ok 24 - NFR-005 places implementation comments for every functional requirement in source modules
+  ---
+  duration_ms: 0.4877
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 50085.6776
+
+--- stderr ---
+

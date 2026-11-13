@@ -1,0 +1,20 @@
+Gate: security
+Result: PASS
+Command: npm.cmd run security
+Exit code: 0
+Duration: 3360 ms
+
+--- stdout ---
+
+> sprint-capacity-velocity@1.0.0 security
+> eslint src
+
+
+C:\Users\Dell\Documents\AISDLCAssignment\Part1A\src\cli.js
+  80:20  warning  Found readFileSync from package "node:fs" with non literal argument at index 0  security/detect-non-literal-fs-filename
+
+✖ 1 problem (0 errors, 1 warning)
+
+
+--- stderr ---
+

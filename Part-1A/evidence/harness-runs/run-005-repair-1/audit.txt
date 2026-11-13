@@ -1,0 +1,30 @@
+Gate: audit
+Result: PASS
+Command: npm.cmd audit --audit-level=high
+Exit code: 0
+Duration: 3050 ms
+
+--- stdout ---
+# npm audit report
+
+minimatch  7.0.0 - 11.0.0
+Severity: moderate
+minimatch has potential denial of service via globparts amplification - https://github.com/advisories/GHSA-g3hv-75wg-m249
+fix available via `npm audit fix --force`
+Will install eslint@9.39.5, which is a breaking change
+node_modules/minimatch
+  @eslint/config-array  >=0.23.0
+  Depends on vulnerable versions of minimatch
+  node_modules/@eslint/config-array
+    eslint  >=10.0.0-alpha.0
+    Depends on vulnerable versions of @eslint/config-array
+    Depends on vulnerable versions of minimatch
+    node_modules/eslint
+
+3 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+--- stderr ---
+

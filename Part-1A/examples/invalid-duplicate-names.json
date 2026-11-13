@@ -1,0 +1,6 @@
+{
+  "sprintLengthDays": 10,
+  "team": [{ "name": " Asha " }, { "name": "asha" }],
+  "pastVelocities": [10],
+  "plannedPoints": 8
+}
