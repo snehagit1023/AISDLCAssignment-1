@@ -33,9 +33,9 @@ The commit history of each part was kept when the two projects were combined int
 
 ## Demo videos
 
-- Part 1A: (link)
-- Part 1B clip 1 – final demo run: (link)
-- Part 1B clip 2 – repair 2 and re-run: (link)
+- Part 1A – Sprint Capacity & Velocity Calculator: https://drive.google.com/file/d/1pSNGpQSDUVfg7NutwQt88d-L9pG-Feme/view?usp=sharing
+- Part 1B clip 1 – final demo run (run 3, C10 safety failure caught by the harness): https://drive.google.com/file/d/1Ut9bguMdF7S-XbWS0pO8SHxGNA2E6kYN/view?usp=sharing
+- Part 1B clip 2 – repair 2 and re-run (run 4, PASS 15/15): https://drive.google.com/file/d/1pLCr-RKool-e31BiK3IK7LtakHdpfhg0/view?usp=sharing
 
 ## AI use and secrets
 
