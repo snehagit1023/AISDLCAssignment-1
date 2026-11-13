@@ -14,7 +14,7 @@ Both parts follow the GitHub Spec Kit flow (constitution → specify → clarify
 | Part | Harness | Final result | Repair cycles | Decision |
 |---|---|---|---|---|
 | 1A | 7 deterministic gates (integrity, lint, security, audit, unit tests, contract checks, traceability) | all gates PASS | 1 (speed test failure under load – diagnosed as environment, recorded as limitation) | ACCEPT with known limitations – see `Part-1A/evidence/harness-log.md` |
-| 1B | 7 code gates + 15-case evaluation in 3 layers (schema, invariants/guardrails, quality score) | PASS 15/15, safety 4/4 | 2 (app-owned comments/metadata; prompt v2 for privacy placeholders) | see `Part-1B/evidence/harness-log.md` |
+| 1B | 7 code gates + 15-case evaluation in 3 layers (schema, invariants/guardrails, quality score) | PASS 15/15, safety 4/4 | 2 (app-owned comments/metadata; prompt v2 for privacy placeholders) | ACCEPT with known limitations – see `Part-1B/evidence/harness-log.md` |
 
 ## Where to find things
 
