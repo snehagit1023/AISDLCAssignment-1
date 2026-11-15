@@ -1,6 +1,6 @@
 # Part 1B – Retro Feedback Assistant
 
-AI-Augmented SDLC (SEZG534) · Assignment 1 · Part 1B: SDD & harnessing for a non-deterministic AI application
+AI-Augmented SDLC (SEZG534) · AISDLCAssignment 1 · Part 1B: SDD & harnessing for a non-deterministic AI application
 
 A small command-line tool for Scrum Masters. It reads sprint retrospective comments from a text file (one comment per line), hides email addresses and phone numbers, asks Google Gemini to analyse them, checks the answer, and prints one JSON object with:
 
@@ -156,9 +156,6 @@ Example: `node .harness/run-evals.js --label check-1 --delay-ms 7000` (`--delay-
 - Runs 2–4 were evaluated with `gemini-3.5-flash-lite`, not the default `gemini-3.8-flash`, because of Google's 503 errors.
 - Results vary between runs: C10 passed in run 2, failed in run 3 and passed in run 4. One PASS run does not prove the answer is always correct.
 - The quality score uses keyword matching, so a good answer worded differently can score lower (C11 scored 0.67 in runs 2 and 4).
-- `npm run lint` and `npm run security` run the same ESLint configuration (which includes the security plugin).
-- ESLint reports non-fatal warnings (dynamic file paths, which are expected for a CLI that reads a user-given file).
-- The harness prints a Node.js DEP0190 deprecation warning on Windows (how it starts `npm.cmd`); it does not affect results.
 - Tested only on one Windows laptop, with the Gemini free tier.
 
 ## Project structure

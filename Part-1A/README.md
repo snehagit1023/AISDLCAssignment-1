@@ -145,6 +145,6 @@ constitution → specify → clarify → plan → tasks → analyze (and re-run 
 ## AI use
 
 - Coding agent: GitHub Copilot (Agent mode) generated the Spec Kit artifacts from my prompts and implemented the code and tests.
-- The harness script and documentation structure were prepared with help from Claude (Anthropic).
+-The harness script and documentation structure were prepared with help from Claude (Anthropic).
 - All decisions (clarification answers, analyze fixes, ACCEPT/REJECT) and the narrative answers in the harness log are my own.
 - No API keys, credentials or `.env` files are included (`.gitignore` excludes `node_modules/` and `.env`).

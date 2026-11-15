@@ -1,6 +1,6 @@
 # Harness Log – Part 1A: Sprint Capacity & Velocity Calculator
 
-> Structure and fact tables prepared with AI help (Claude). Narrative answers are my own (Sneha Sharma), AI only fixed spelling and grammar.
+> Structure and fact tables prepared with AI help. Narrative answers are my own (Sneha Sharma), AI only fixed spelling and grammar.
 
 ## 1. Initial coding-agent generation and its context
 
@@ -97,7 +97,7 @@ I would accept this app, because it enables me to calculate capacity, velocity a
 
 **Known limitations and residual risks:**
 
-* The speed test (NFR-003) passes only just (~900 ms vs 1,000 ms limit), so it can fail on a slower or busy laptop, as seen in runs 4, 6 and 7 during screen recording (1,339 / 1,189 / 1,158 ms).
+* The speed test (NFR-003) passes only just (~900ms vs 1,000 ms limit), so it can fail on a slower or busy laptop, as seen in runs 4, 6 and 7 during screen recording (1,339 / 1,189 / 1,158 ms).
 - It was only tested on my laptop.
 
 **What I would add before using this in a higher-risk setting:**

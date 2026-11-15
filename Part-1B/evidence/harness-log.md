@@ -1,6 +1,6 @@
 # Harness Log – Part 1B: Retro Feedback Assistant
 
-> Structure and fact tables prepared with AI help (Claude). Narrative answers are my own (Sneha Sharma), given in a question-and-answer session; AI only fixed spelling and grammar.
+Structure and fact tables prepared with AI help. Narrative answers are my own (Sneha Sharma), AI only fixed spelling and grammar.
 
 ## 1. Model and configuration
 
