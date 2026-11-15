@@ -1,4 +1,4 @@
-# Assignment 1 – SDD & Harness Engineering
+# AISDLCAssignment-1 – SDD & Harness Engineering
 
 AI-Augmented SDLC (SEZG534) · BITS Pilani WILP · Sneha Sharma
 
@@ -19,7 +19,7 @@ Both parts follow the GitHub Spec Kit flow (constitution → specify → clarify
 ## Where to find things
 
 ```
-Assignment-1/
+AISDLCAssignment-1/
 ├── README.md
 ├── Part-1A/   Spec Kit artifacts (specs/, .specify/), src/ + tests/, .harness/, evidence/
 └── Part-1B/   Spec Kit artifacts (specs/, .specify/), src/ + tests/, evals/, .harness/, evidence/
