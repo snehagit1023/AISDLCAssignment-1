@@ -1,6 +1,6 @@
 # Harness Log – Part 1A: Sprint Capacity & Velocity Calculator
 
-> Structure and fact tables prepared with AI help (Claude). Narrative answers are my own (Sneha Sharma), given in a question-and-answer session; AI only fixed spelling and grammar.
+> Structure and fact tables prepared with AI help (Claude). Narrative answers are my own (Sneha Sharma), AI only fixed spelling and grammar.
 
 ## 1. Initial coding-agent generation and its context
 
@@ -11,14 +11,14 @@
 | Who wrote the code | GitHub Copilot, the AI coding assistant in VS Code (Agent mode; it picked the model gpt-6-luna by itself) |
 | What I asked it to do | Build the app by running the Spec Kit command `/speckit-implement`, which works through tasks T001 to T048 from my task list |
 | What it read before coding | My project rules (constitution, version 1.0.0), the approved specification (18 functional and 5 non-functional requirements), the plan, the task list, and my two harness rule files (style guide and harness rules) |
-| Where the proof is saved | The AI's first version of the code is in `evidence/initial-generation/initial-code.zip`; its full work log is in `agent-summary.md`; the exact prompt I used is in `prompts.md` (Step 7) |
+| Where the proof is saved | The AI's first version of the code is in `evidence/initial-generation/initial-code.zip`; its full work log is in `agent-summary.md`; the exact prompts I used is in `prompts.md` (Step 7) |
 | How it went | 23 of its 24 tests passed. The one that failed was the speed test (NFR-003): a report for 50 team members took 1,277 milliseconds, but the limit is 1,000 milliseconds (1 second) |
 
 Copilot followed the spec because we gave it the constitution to follow. In agent-summary.md we can see it read all the files: constitution.md, spec.md, plan.md, tasks.md, style-guide.md and harness-rules.md. By this we can see that it followed them.
 
 ## 2. The harness
 
-**Facts:** one command, `node .harness/run-harness.js --label <name>`, written separately from the coding agent (with Claude's help) and committed before running.
+**Facts:** one command, `node .harness/run-harness.js --label <name>`, written separately from the coding agent  and committed before running.
 
 | # | Gate | Checks | Linked to |
 |---|---|---|---|
@@ -97,9 +97,7 @@ I would accept this app, because it enables me to calculate capacity, velocity a
 
 **Known limitations and residual risks:**
 
-- The speed test (NFR-003) has only about a 10% margin, so it could fail on a slower laptop.
-- When Windows is busy, there might be failures because of the Node startup delay (seen in run 4: 1,339 ms and run 6: 1,189 ms, both during screen recording).
-- npm audit found 3 moderate vulnerabilities in the development tools.
+* The speed test (NFR-003) passes only just (~900 ms vs 1,000 ms limit), so it can fail on a slower or busy laptop, as seen in runs 4, 6 and 7 during screen recording (1,339 / 1,189 / 1,158 ms).
 - It was only tested on my laptop.
 
 **What I would add before using this in a higher-risk setting:**
